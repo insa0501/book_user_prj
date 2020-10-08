@@ -169,6 +169,7 @@
                     <option value="book_company"  <c:if test="${param.searchType eq 'book_company'}">selected</c:if>>출판사</option>
                 </select>
                 <input class="input_search_keyword" id="searchkeyword" name="searchkeyword" type="text" placeholder="검색어를 입력해주세요.">
+                <input type="text" style="display:none;" >
                 <input type="button" class="search_btn" name="search_btn2" id="search_btn2" value="검색"  onclick="formData('searchkeyword')" >
             </form>
             
