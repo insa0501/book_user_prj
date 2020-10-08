@@ -45,27 +45,39 @@
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
     
-    function pay(){
-    	var payment_final_chk = document.getElementById("payment_final_chk");//결재하기 버튼
-    	var pay_frm = document.getElementById("pay_frm"); //결재 폼
-    	
-/*     	var card_exp_date2 = document.getElementById("card_exp_date2");
-    	var year = card_exp_date2.value.substr(2);
-    	console.log(year);
-    	
-    	card_exp_date2.value = year;
-    	console.log(card_exp_date2.value);
-    	 */
-    	 
-    	 document.getElementById("order_name").value = document.getElementById("user_name").value;
-    	
-    	if(!payment_final_chk.checked){	
-    		alert("필수항목을 체크해주세요")
-    		return;
-   		}
-    	console.log("체크됨")
-    	pay_frm.submit();
-    }
+    function pay() {
+        var payment_final_chk = document.getElementById("payment_final_chk"); //결재하기 버튼
+        var pay_frm = document.getElementById("pay_frm"); //결재 폼
+
+        var card_no1 = document.getElementById("card_no1");
+        var card_no2 = document.getElementById("card_no2");
+        var card_no3 = document.getElementById("card_no3");
+        var card_no4 = document.getElementById("card_no4");
+
+        document.getElementById("order_name").value = document.getElementById(
+          "user_name"
+        ).value;
+
+        console.log(card_no1);
+        //카드번호를 4자리 제대로 입력했는지 확인
+        if (
+          card_no1.value.length !== 4 ||
+          card_no2.value.length !== 4 ||
+          card_no3.value.length !== 4 ||
+          card_no4.value.length !== 4
+        ) {
+          alert("카드번호를 확인해주세요");
+        }
+
+        //필수 항목 체크됐는지 확인
+        if (!payment_final_chk.checked) {
+          alert("필수항목을 체크해주세요");
+          return;
+        }
+
+        console.log("넘어감");
+        pay_frm.submit();
+      }
     
     function search_addr(){
         new daum.Postcode({
@@ -194,39 +206,6 @@
             <input type="hidden" name="hidden_shipping" value="${ param.hidden_shipping }"/>
             <input type="hidden" name="order_price" value="${ param.hidden_total_price }"/>
           </div>
-<!--             <li>
-              <span class="book_title"
-                >어쩌고저쩌고책제목어쩌고저쩌고책제목이다</span
-              >
-              <span class="book_price">25,000 원</span>
-              <span><input type="number" class="book_cnt" value="1" /></span>
-              <span class="book_price2">25,000 원</span>
-            </li>
-            <li>
-              <span class="book_title">책책췍</span>
-              <span class="book_price">15,000 원</span>
-              <span><input type="number" class="book_cnt" value="1" /></span>
-              <span class="book_price2">15,000 원</span>
-            </li>
-          </ul>
-
-          현재금액+배송비=총금액
-          <div class="cart_total_wrap">
-            <div>
-              <span>합계</span>
-              <span>00,000 원</span>
-            </div>
-            <div><i class="fas fa-plus"></i></div>
-            <div>
-              <span>배송료</span>
-              <span>0원</span>
-            </div>
-            <div><i class="fas fa-equals"></i></div>
-            <div>
-              <span>최종 결제 금액</span>
-              <span>00,000원</span>
-            </div>
-          </div> -->
           <!-- 계산하는 부분 end-->
 
           <!-- 배송지정보, 결제정보, 결제방법 -->
