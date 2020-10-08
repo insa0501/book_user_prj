@@ -26,5 +26,7 @@
     <mapper resource="kr/co/sist/user/mapper/QnASelect.xml"/>
 	<mapper resource="kr/co/sist/user/mapper/SelectBook.xml" />
 	<mapper resource="kr/co/sist/user/mapper/Order.xml" />
+	<mapper resource="kr/co/sist/user/mapper/MemberJoin.xml" />
+	<mapper resource="kr/co/sist/user/mapper/MyPage.xml" />
   </mappers>
 </configuration>
