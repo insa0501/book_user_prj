@@ -82,10 +82,9 @@
 
     <!-- main section -->
     <section class="section_main">
-        <!-- 카테고리 -->
-        <c:import url="my_page_category.jsp"></c:import>
-        <!-- 카테고리 end -->
-
+	<!-- mypage_category -->
+	<c:import url="mypage_category.jsp" />
+	<!-- mypage_category end -->
         <!-- 우측의 내용들 -->
         <div class="main_content">
             <div class="content_title">
