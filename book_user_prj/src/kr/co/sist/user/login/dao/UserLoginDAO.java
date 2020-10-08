@@ -1,15 +1,10 @@
 package kr.co.sist.user.login.dao;
 
-import java.io.IOException;
-import java.io.Reader;
 import java.sql.SQLException;
 
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionException;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import kr.co.sist.user.GetMyBatisHandler;
 import kr.co.sist.user.login.domain.UserLoginDomain;
 import kr.co.sist.user.login.vo.SelectUserIdVO;
 import kr.co.sist.user.login.vo.SelectUserPassVO;
@@ -18,7 +13,6 @@ import kr.co.sist.user.login.vo.UserLoginVO;
 
 public class UserLoginDAO {
 	private static UserLoginDAO u_loginDAO;
-	private static SqlSessionFactory ssf;
 	
 	private UserLoginDAO() {
 	}
@@ -30,32 +24,6 @@ public class UserLoginDAO {
 		return u_loginDAO;
 	} // getInstance()
 	
-	private SqlSessionFactory getSqlSessionFactory() throws IOException{
-		
-		if (ssf == null) {
-			// xml과 연결
-			String xmlConfig="kr/co/sist/user/mybatis_config.xml";
-			Reader reader = Resources.getResourceAsReader(xmlConfig);
-			
-			// Mybatis Framework 생성
-			ssf = new SqlSessionFactoryBuilder().build(reader);
-			reader.close();
-		} // end if
-		return ssf;
-	} // getSqlSessionFactory()
-	
-	public SqlSession getSqlSession() {
-		SqlSession ss = null;
-		
-		try {
-			ss = getSqlSessionFactory().openSession();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} // end catch
-		
-		return ss;
-	} // getSqlSession()
-	
 	/**
 	 * 로그인
 	 * @param ulVO
@@ -65,25 +33,12 @@ public class UserLoginDAO {
 	public UserLoginDomain selectLoginId(UserLoginVO ulVO) throws SQLException {
 		UserLoginDomain uld = null;
 		
-		SqlSession ss = getSqlSession();
+		SqlSession ss = GetMyBatisHandler.getInstance().getSqlSession();
 		uld = ss.selectOne("kr.co.sist.user.login.login", ulVO);
 		ss.close();
 		
 		return uld;
 	} // selectLoginId()
-	
-	
-//	public static void main(String[] args) {
-//		UserLoginVO ulVO = new UserLoginVO();
-//		ulVO.setUser_id("test1");
-//		ulVO.setUser_pass("1234");
-//		try {
-//			System.out.println(UserLoginDAO.getInstance().selectLoginId(ulVO));
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
 	
 	/**
 	 * 아이디찾기
@@ -93,6 +48,10 @@ public class UserLoginDAO {
 	 */
 	public String selectUserId(SelectUserIdVO suiVO) throws SQLException {
 		String user_id = null;
+		
+		SqlSession ss = GetMyBatisHandler.getInstance().getSqlSession();
+		user_id = ss.selectOne("selectUserId", suiVO);
+		ss.close();
 		
 		return user_id;
 	} // selectUserId()
@@ -107,6 +66,10 @@ public class UserLoginDAO {
 	public String selectUserPass(SelectUserPassVO supVO) throws SQLException {
 		String user_id = null;
 		
+		SqlSession ss = GetMyBatisHandler.getInstance().getSqlSession();
+		user_id = ss.selectOne("selectUserPass", supVO);
+		ss.close();
+		
 		return user_id;
 	} // selectUserPass()
 	
@@ -119,11 +82,12 @@ public class UserLoginDAO {
 	public int updateUserPass(UpdateUserPassVO uupVO) throws SQLException {
 		int cnt = 0;
 		
+		SqlSession ss = GetMyBatisHandler.getInstance().getSqlSession();
+		cnt = ss.update("updateUserPass", uupVO);
+		ss.commit();
+		ss.close();
+		
 		return cnt;
 	} // updateUserPass()
-	
-	
-	
-	
 	
 } // class

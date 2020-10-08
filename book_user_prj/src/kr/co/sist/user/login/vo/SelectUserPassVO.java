@@ -1,7 +1,7 @@
 package kr.co.sist.user.login.vo;
 
 public class SelectUserPassVO {
-	private String user_id, user_name, user_phoen;
+	private String user_id, user_name, user_phone;
 
 	public String getUser_id() {
 		return user_id;
@@ -19,12 +19,12 @@ public class SelectUserPassVO {
 		this.user_name = user_name;
 	}
 
-	public String getUser_phoen() {
-		return user_phoen;
+	public String getUser_phone() {
+		return user_phone;
 	}
 
-	public void setUser_phoen(String user_phoen) {
-		this.user_phoen = user_phoen;
+	public void setUser_phone(String user_phone) {
+		this.user_phone = user_phone;
 	}
 	
 	

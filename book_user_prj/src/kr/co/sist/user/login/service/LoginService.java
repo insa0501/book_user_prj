@@ -29,9 +29,13 @@ public class LoginService {
 	 * 아이디 찾기
 	 * @param suiVO
 	 * @return user_id
+	 * @throws SQLException 
 	 */
-	public String searchUserId(SelectUserIdVO suiVO) {
+	public String searchUserId(SelectUserIdVO suiVO) throws SQLException {
 		String user_id = "";
+		
+		UserLoginDAO ulDAO = UserLoginDAO.getInstance();
+		user_id = ulDAO.selectUserId(suiVO);
 		
 		return user_id;
 	} // searchUserId()
@@ -40,9 +44,13 @@ public class LoginService {
 	 * 비밀번호 찾기
 	 * @param supVO
 	 * @return
+	 * @throws SQLException 
 	 */
-	public String searchUserPass(SelectUserPassVO supVO) {
+	public String searchUserPass(SelectUserPassVO supVO) throws SQLException {
 		String user_id = "";
+		
+		UserLoginDAO ulDAO = UserLoginDAO.getInstance();
+		user_id = ulDAO.selectUserPass(supVO);
 		
 		return user_id;
 	} // searchUserId()
@@ -51,10 +59,14 @@ public class LoginService {
 	 * 비밀번호 변경
 	 * @param uupVO
 	 * @return user_id
+	 * @throws SQLException 
 	 */
-	public int changeUserPass(UpdateUserPassVO uupVO) {
-		int cnt = 0;
+	public boolean changeUserPass(UpdateUserPassVO uupVO) throws SQLException {
+		boolean updateFlag = false;
 		
-		return cnt;
+		UserLoginDAO ulDAO = UserLoginDAO.getInstance();
+		updateFlag = ulDAO.updateUserPass(uupVO)==1;
+		
+		return updateFlag;
 	} // changeUserPass()
 } // class
