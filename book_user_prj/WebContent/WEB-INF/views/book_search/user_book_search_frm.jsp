@@ -158,7 +158,7 @@
     <!-- 우측에 책 있는 부분 -->
     <div class="main_content">
         <div class="main_content_title">
-            검색
+           	 검색
         </div>
         <!-- 입력받는 창 -->
         <div class="input_keyword_wrap">
@@ -171,11 +171,15 @@
                 <input class="input_search_keyword" id="searchkeyword" name="searchkeyword" type="text" placeholder="검색어를 입력해주세요.">
                 <input type="button" class="search_btn" name="search_btn2" id="search_btn2" value="검색"  onclick="formData('searchkeyword')" >
             </form>
+            
+	        <!-- 검색어를 보여주는 부분 -->
+	         <c:if test="${not empty param.searchkeyword}">
+	           <div class="search_show_keyword"><span>'${param.searchkeyword }'</span>으로 검색한 결과입니다.</div>
+	        </c:if>
+	        <c:if test="${ empty param.searchkeyword }">
+	        	<div class="search_show_keyword">입력된 검색어가 없습니다.</div>
+	        </c:if>
         </div>
-        <!-- 검색어를 보여주는 부분 -->
-        <c:if test="searchkeyword neq null">
-           <div class="search_show_keyword"><span>'${param.searchkeyword }'</span>으로 검색한 결과입니다.</div>
-        </c:if>
         <!-- 검색해서 나온 책 wrapper -->
         	<!-- 검색결과가 없는 경우 -->
             <c:if test="${empty search_book_result}"> 
@@ -198,7 +202,6 @@
 			            </div>
 	              </c:forEach> 
 	        </div>
-v
 
 
     </div>
