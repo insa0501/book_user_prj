@@ -7,7 +7,7 @@ package kr.co.sist.user.mypage.vo;
  */
 public class UserInfoVO {
 
-	private String user_id, user_pass, user_name, user_phone, user_zipcode, user_addr1, user_addr2;
+	private String user_id, user_pass, user_phone, user_zipcode, user_addr1, user_addr2;
 
 	public String getUser_id() {
 		return user_id;
@@ -23,14 +23,6 @@ public class UserInfoVO {
 
 	public void setUser_pass(String user_pass) {
 		this.user_pass = user_pass;
-	}
-
-	public String getUser_name() {
-		return user_name;
-	}
-
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
 	}
 
 	public String getUser_phone() {

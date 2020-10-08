@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.sist.user.memberJoin">
+	<!-- 아이디 중복확인 -->
+	<select id="idDup" resultType="String" parameterType="String">
+  		select	user_id
+  		from	member
+  		where	user_id = #{check_id}
+	</select>
+  
+  	<!-- 회원가입 -->
+	<insert id="memberJoin" parameterType="kr.co.sist.user.member.vo.MemberJoinVO">
+		insert into member(user_id, user_pass, user_name, user_phone, user_zipcode, user_addr1, user_addr2, user_ip, user_hiredate)
+		values(#{user_id},#{user_pass},#{user_name},#{user_phone},#{user_zipcode},#{user_addr1},#{user_addr2},#{user_ip},sysdate)
+	</insert>
+	
+</mapper>

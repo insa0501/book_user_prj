@@ -9,9 +9,9 @@ import java.util.List;
  */
 public class OrderListDomain {
 	
-	private String order_date, order_price, order_status;
+	private String order_date, order_status, order_price;
 	private int order_no; 
-	private List<String> book_name;
+	private List<OrderListBookDomain> list;
    
 	public String getOrder_date() {
 		return order_date;
@@ -37,11 +37,12 @@ public class OrderListDomain {
 	public void setOrder_no(int order_no) {
 		this.order_no = order_no;
 	}
-	public List<String> getBook_name() {
-		return book_name;
+	public List<OrderListBookDomain> getList() {
+		return list;
 	}
-	public void setBook_name(List<String> book_name) {
-		this.book_name = book_name;
+	public void setList(List<OrderListBookDomain> list) {
+		this.list = list;
 	}
+
 	   
 } // class

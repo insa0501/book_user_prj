@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.sist.user.myPage">
+	<!-- 주문 정보 총 개수 조회 -->
+	<select id="selectOrderCnt" resultType="Integer" parameterType="kr.co.sist.user.mypage.vo.SelectOrderListVO">
+		select count(*)
+		from order_list
+		where user_id = #{user_id}
+		<if test="startDay != null">
+		and order_date between #{startDay} and #{endDay}
+		</if>
+	</select>
+	
+	<!-- 주문 리스트-주문정보 조회 -->
+  	<select id="selectOrderList" resultType="kr.co.sist.user.mypage.domain.OrderListDomain" parameterType="kr.co.sist.user.mypage.vo.SelectOrderListVO">
+  		select	to_char(order_date, 'yyyy-mm-dd') order_date, to_char(order_price,'9,999,999') order_price, order_status, order_no
+  		from	(select order_date, order_price, order_status, order_no, row_number() over(order by order_date desc) rnum
+				from order_list
+				where user_id = #{user_id}
+				<if test="startDay != null">
+					and order_date between #{startDay} and #{endDay}
+				</if>)
+		where rnum between #{startNum} and #{endNum}
+  	</select>
+  	
+	<!-- 주문 리스트-책정보 조회 -->
+  	<select id="selectOrderListBook" resultType="kr.co.sist.user.mypage.domain.OrderListBookDomain" parameterType="kr.co.sist.user.mypage.vo.SelectOrderListVO">
+  		select order_no, book_name, order_book_cnt
+		from book , (select list.order_no, book.book_isbn, book.order_book_cnt
+					from	order_book book, (select order_no
+											from order_list
+											where user_id = #{user_id}
+											<if test="startDay != null">
+											and order_date between #{startDay} and #{endDay}
+											</if>
+											) list
+					where book.order_no = list.order_no) list
+		where book.book_isbn = list.book_isbn
+  	</select>
+  	
+	<!-- 주문상세-주문 및 결제정보 조회 -->
+  	<select id="selectOrderDetail" resultType="kr.co.sist.user.mypage.domain.OrderDetailDomain" parameterType="Integer">
+  		select list.order_name, list.order_zipcode, list.order_addr1, list.order_addr2, substr(order_phone,1,3)||'-'||substr(order_phone,4,4)||'-'||substr(order_phone,7,4) order_phone, to_char(order_date, 'yyyy-mm-dd') order_date,
+  				to_char(order_price,'9,999,999') order_price, list.order_status, pay.card_company, pay.card_no1, pay.card_no2, pay.card_no3, pay.card_no4, pay.card_exp_date1, pay.card_exp_date1
+		from order_list list, payment pay
+		where (list.order_no = pay.order_no) and list.order_no = #{order_no}
+  	</select>
+  	
+	<!-- 주문상세-책정보 조회 -->
+  	<select id="selectOrderDetailBook" resultType="kr.co.sist.user.mypage.domain.OrderBookListDomain" parameterType="Integer">
+  		select book_name, to_char(book_price, '9,999,999') book_price, to_char(book_price*order_book_cnt, '9,999,999') total_price, order_book_cnt
+		from book , (select list.order_no, book.book_isbn, book.order_book_cnt
+					from	order_book book, (select order_no
+											from order_list
+											where order_no = #{order_no}) list
+					where list.order_no = book.order_no) list
+		where book.book_isbn = list.book_isbn
+  	</select>
+  
+  	<!-- 주문 삭제(결제) -->
+	<delete id="deleteOrderPay" parameterType="Integer">
+		delete	from payment
+		where	order_no = #{order_no}
+	</delete>
+  	<!-- 주문 삭제(책) -->
+	<delete id="deleteOrderBook" parameterType="Integer">
+		delete	from order_book
+		where	order_no = #{order_no}
+	</delete>
+  	<!-- 주문 삭제(주문) -->
+	<delete id="deleteOrder" parameterType="Integer">
+		delete	from order_list
+		where	order_no = #{order_no}
+	</delete>
+	
+	<!-- 비밀번호 검증 -->
+  	<select id="selectPass" resultType="kr.co.sist.user.mypage.domain.UserInfoDomain" parameterType="kr.co.sist.user.mypage.vo.UserCheckVO">
+  		select	user_id, user_phone, user_zipcode, user_addr1, user_addr2
+  		from	member
+  		where	user_id = #{user_id} and user_pass=#{user_pass}
+  	</select>
+  	
+  	<!-- 정보변경 -->
+  	<update id="updateUserInfo" parameterType="kr.co.sist.user.mypage.vo.UserInfoVO">
+  		update	member
+  		set		user_pass = #{user_pass}, user_phone = #{user_phone}, user_zipcode = #{user_zipcode}, user_addr1 = #{user_addr1}, user_addr2 = #{user_addr2}
+  		where	user_id = #{user_id}
+  	</update>
+	
+  	<!-- 탈퇴 -->
+  	
+</mapper>

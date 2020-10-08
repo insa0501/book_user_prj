@@ -4,9 +4,8 @@ import java.util.List;
 
 public class OrderDetailDomain {
 
-	  private String order_name, order_status, order_zipcode, order_addr1, order_addr2,
-	          order_phone, card_company, card_no;
-	  private int order_price, card_exp_date;
+	  private String order_name, order_status, order_price, order_zipcode, order_addr1, order_addr2,
+	          order_phone, card_company, card_no1, card_no2, card_no3, card_no4, card_exp_date1, card_exp_date2;
 	  private  List<OrderBookListDomain> orderBookList;
 	public String getOrder_name() {
 		return order_name;
@@ -50,23 +49,47 @@ public class OrderDetailDomain {
 	public void setCard_company(String card_company) {
 		this.card_company = card_company;
 	}
-	public String getCard_no() {
-		return card_no;
+	public String getCard_no1() {
+		return card_no1;
 	}
-	public void setCard_no(String card_no) {
-		this.card_no = card_no;
+	public void setCard_no1(String card_no1) {
+		this.card_no1 = card_no1;
 	}
-	public int getOrder_price() {
+	public String getCard_no2() {
+		return card_no2;
+	}
+	public void setCard_no2(String card_no2) {
+		this.card_no2 = card_no2;
+	}
+	public String getCard_no3() {
+		return card_no3;
+	}
+	public void setCard_no3(String card_no3) {
+		this.card_no3 = card_no3;
+	}
+	public String getCard_no4() {
+		return card_no4;
+	}
+	public void setCard_no4(String card_no4) {
+		this.card_no4 = card_no4;
+	}
+	public String getOrder_price() {
 		return order_price;
 	}
-	public void setOrder_price(int order_price) {
+	public void setOrder_price(String order_price) {
 		this.order_price = order_price;
 	}
-	public int getCard_exp_date() {
-		return card_exp_date;
+	public String getCard_exp_date1() {
+		return card_exp_date1;
 	}
-	public void setCard_exp_date(int card_exp_date) {
-		this.card_exp_date = card_exp_date;
+	public void setCard_exp_date1(String card_exp_date1) {
+		this.card_exp_date1 = card_exp_date1;
+	}
+	public String getCard_exp_date2() {
+		return card_exp_date2;
+	}
+	public void setCard_exp_date2(String card_exp_date2) {
+		this.card_exp_date2 = card_exp_date2;
 	}
 	public List<OrderBookListDomain> getOrderBookList() {
 		return orderBookList;
@@ -75,7 +98,4 @@ public class OrderDetailDomain {
 		this.orderBookList = orderBookList;
 	}
 	 
-	   
-	 
-	   
 }

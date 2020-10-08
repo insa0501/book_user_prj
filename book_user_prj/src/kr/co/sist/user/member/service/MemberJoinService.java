@@ -1,5 +1,6 @@
 package kr.co.sist.user.member.service;
 
+import kr.co.sist.user.member.dao.MemberJoinDAO;
 import kr.co.sist.user.member.vo.MemberJoinVO;
 
 public class MemberJoinService {
@@ -10,9 +11,12 @@ public class MemberJoinService {
 	 * @return
 	 */
 	public String searchDupId(String check_id) {
-		String msg = "";
+		String user_id = "";
 		
-		return msg;
+		MemberJoinDAO mjDAO = MemberJoinDAO.getInstance();
+		user_id = mjDAO.selectDupId(check_id);
+		
+		return user_id;
 	} //searchDupId
 	
 	/**
@@ -20,9 +24,10 @@ public class MemberJoinService {
 	 * @param mjVO
 	 * @return
 	 */
-	public String memberJoin(MemberJoinVO mjVO) {
-		String msg = "";
+	public void memberJoin(MemberJoinVO mjVO) {
 		
-		return msg;
+		MemberJoinDAO mjDAO = MemberJoinDAO.getInstance();
+		mjDAO.insertMember(mjVO);
+		
 	} // memberJoin
 } // class
