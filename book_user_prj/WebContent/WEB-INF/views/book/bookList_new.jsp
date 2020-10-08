@@ -27,7 +27,7 @@
 				<c:forEach var="bl" items="${book_list_new}" varStatus="vs" begin="0" end="7" step="1">
 					<div class="content_book">
 						<img class="book_img" src="https://www.mmcashop.co.kr/data/goods/20/06/25/1000000366/1000000366_add3_044.png">
-						<span class="book_title"><a href="user_book_detail.html">${bl.book_name}</a></span>
+						<span class="book_title"><a href="book_detail.do?book_isbn=${bl.book_isbn}">${bl.book_name}</a></span>
 						<span class="book_price">${ bl.book_price }원</span>
 					</div>
 				</c:forEach> 
