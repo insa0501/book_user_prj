@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.sist.user.book">
+	
+	
+	<!-- 국내, 해외 책  -->
+	<select id="bookCountry"
+		resultType="kr.co.sist.user.book.domain.BookDomain"
+		parameterType="kr.co.sist.user.book.vo.BookCountryVO">
+		select book_isbn, book_img, book_name, book_price
+		from book
+		<where>
+			book_activity = 'Y'
+			<if test="book eq 'kor'"> and book_country = '국내' </if>
+			<if test="book eq 'for'"> and book_country = '국외' </if>
+			
+			<choose>
+				<when test="type eq 'science'"> <trim prefix="and"> book_type_no = 0  </trim> </when>
+				<when test="type eq 'kids'"> <trim prefix="and"> book_type_no = 1  </trim> </when>
+				<when test="type eq 'novel'"> <trim prefix="and"> book_type_no = 2  </trim> </when>
+				<when test="type eq 'travel'"> <trim prefix="and"> book_type_no = 3  </trim> </when>
+				<when test="type eq 'cook'"> <trim prefix="and"> book_type_no = 4  </trim> </when>
+				<when test="type eq 'psycho'"> <trim prefix="and"> book_type_no = 5  </trim> </when>
+				<otherwise> <!-- 전체를 보여줌 --> </otherwise> 
+			</choose>
+		</where>
+	</select>
+	
+	
+	<!-- 베스트셀러  -->
+	<select id="bookBest" resultType="kr.co.sist.user.book.domain.BookDomain" parameterType="kr.co.sist.user.book.vo.BookCountryVO">
+		select book_isbn, book_img, book_name, book_price
+		from book
+		<where>
+			book_activity = 'Y' and
+			book_best = 'Y'
+			<if test="book_type_no neq null">
+				and book_type_no = ${book_type_no}
+			</if> 
+		</where>
+	</select>
+	
+	
+	<!-- 신간  -->
+	<select id="bookNew" resultType="kr.co.sist.user.book.domain.BookDomain" parameterType="kr.co.sist.user.book.vo.BookCountryVO">
+		select book_isbn, book_img, book_name, book_price
+		from book
+		<where>
+			book_activity = 'Y' and
+			<!-- 최근 한달만 보고싶으니까 -->
+			book_date > ADD_MONTHS(SYSDATE, -2)
+			
+			<if test="book_type_no neq null">
+				and book_type_no = ${book_type_no}
+			</if> 
+		</where>
+	</select>
+	
+</mapper>

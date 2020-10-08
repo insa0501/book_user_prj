@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.sist.book.Search">
+  <select id="book_search" resultType="kr.co.sist.user.common.domain.BookDomain" parameterType="kr.co.sist.user.book.vo.SearchBookVO">
+  	select   book_isbn, book_img, book_name, book_price
+  	from	book 
+  	 <where>
+   
+         <if test="bookCate != null">
+          <choose>
+              <when test="bookCate eq 'all' "> book_country in ('국내','국외') </when>  
+              <when test="bookCate eq 'best' ">book_best= 'Y'</when>
+              <when test="bookCate eq 'kor' ">book_country in '국내'</when>
+              <when test="bookCate eq 'for' ">book_country in '국외'</when>
+          </choose> 
+         </if>     
+      
+      	<if test="bookCateDetail != null and bookCateDetail != 'none'"> 
+     	<trim prefix="and" prefixOverrides="and">
+	  	      <choose>
+	  	          <when test="bookCateDetail eq 'detail_all' ">book_type_no in (0,1,2,3,4,5)</when> 
+	  	          <when test="bookCateDetail eq 0 ">book_type_no=0</when> 
+	  	          <when test="bookCateDetail eq 1 ">book_type_no=1</when> 
+	  	          <when test="bookCateDetail eq 2 ">book_type_no=2</when> 
+	  	          <when test="bookCateDetail eq 3 ">book_type_no=3</when> 
+	  	          <when test="bookCateDetail eq 4 ">book_type_no=4</when> 
+	  	          <when test="bookCateDetail eq 5 ">book_type_no=5</when>  
+	  	     </choose>
+  	     </trim>
+        </if>   
+    
+         <if test="book_price1 neq 0 and book_price2 neq 0">
+              <trim prefix="and" prefixOverrides="and">
+                  book_price between #{book_price1} and #{book_price2}
+              </trim>
+          </if>  
+         
+       <if test="searchKeyword != null">
+         <trim prefix="and" prefixOverrides="and">
+           ${searchType} like '%'|| #{ searchKeyword }||'%'  
+         </trim>
+     </if>    
+   
+     </where>
+      
+  </select>
+</mapper>  
+ 
+

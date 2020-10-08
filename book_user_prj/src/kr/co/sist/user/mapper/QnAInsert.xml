@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.sist.qna.insert">
+  <select id="qna_insert" parameterType="kr.co.sist.user.qna.vo.QnaAddVO">
+  	<!-- id session에 넣은거 확인 되면 id로 바꾸기 -->
+  	insert into QNA(qna_no,user_id, qna_type, qna_subject, qna_content, qna_ip,qna_input_date)
+    values (seq_qna_no.nextval,'test1', '${qna_type}', '${qna_subject}', '${qna_content}', '${qna_ip}' ,sysdate)
+    
+  </select>
+</mapper>  
+ 
+

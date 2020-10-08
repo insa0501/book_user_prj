@@ -1,0 +1,50 @@
+* {
+	box-sizing: border-box
+}
+
+.section_main {
+	margin-top: 80px;
+	min-height: 600px;
+}
+
+.event_wrap {
+	width: 60vw;
+	margin: 0 auto
+}
+
+.event_wrap ul {
+	padding-top: 10px
+}
+
+.event_wrap .event {
+	width: inherit;
+	margin-top: 50px;
+	display: flex
+}
+
+.event_wrap .event img {
+	width: 50%;
+}
+
+.event_wrap .event .event_description {
+	display: flex;
+	flex-direction: column;
+	padding-left: 20px
+}
+
+.event_wrap .event .event_description .event_title {
+	font-size: 1.3em;
+	font-weight: 600;
+	padding: 20px 0
+}
+
+.section_main  a, 
+.section_main  a:hover, 
+.section_main  a:visited {
+	color: #000;
+	text-decoration: none
+}
+
+.section_main a:hover {
+	text-decoration: underline
+}

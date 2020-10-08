@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.sist.book.detail">
+  <select id="book_detail" resultType="kr.co.sist.user.book.domain.DetailDomain" parameterType="String">
+  	select   book_isbn,book_name, book_company, book_writer, book_price, book_img, book_date, book_input_date, book_info, book_stock, book_type_no
+  	from	book 
+  	 <where>
+         book_isbn = '${book_isbn}'        
+     </where>
+      
+  </select>
+</mapper>  
+ 
+

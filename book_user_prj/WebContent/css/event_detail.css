@@ -1,0 +1,64 @@
+* {
+	box-sizing: border-box
+}
+
+.section_main {
+	width: 80vw;
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+	margin: 0 auto;
+	padding-top: 120px
+}
+
+.event_titles {
+	width: 100%;
+	border-bottom: 2px solid #e9e9e9;
+	padding-bottom: 20px
+}
+
+.event_titles .title {
+	font-size: 1.5em;
+	font-weight: 600;
+	padding: 20px 0
+}
+
+.event_titles .event_date {
+	margin-right: 20px;
+	font-size: .9em;
+	color: #626262
+}
+
+.event_content_wrap {
+	display: flex;
+	justify-content: center
+}
+
+.event_content_wrap img {
+	margin-top: 50px;
+	width: 70vw
+}
+
+.go_back {
+	width: 200px;
+    height: 40px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    transition: .7s;
+    font-weight: 600;
+}
+
+a, a:hover, a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+.go_back:hover {
+	transition: .7s;
+	background-color: black;
+	color: white;
+    font-weight: 600;
+}
