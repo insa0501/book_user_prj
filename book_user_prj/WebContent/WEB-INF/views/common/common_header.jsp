@@ -1,12 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 	
 		<section class="section_header">
 		<div class="topper_nav" id="topper_nav">
 			<ul>
-				<li class="topper_nav_login"><a href="user_login.html">로그인</a></li>
-				<li><a href="mypage_form.do">마이페이지</a></li>
+				<c:if test="${ empty sessionScope.id }">
+				<li class="topper_nav_login"><a href="login_form.do">로그인</a></li>
+				</c:if>
+				<c:if test="${ not empty sessionScope.id }">
+				<li class="topper_nav_login"><a href="logout_process.do">로그아웃</a></li>
+				</c:if>
+				<li><a href="order_list.do">마이페이지</a></li>
 				<li><a href="user_book_search_frm.do">검색</a></li>
 				<li><a href="#void">고객센터</a></li>
 			</ul>
