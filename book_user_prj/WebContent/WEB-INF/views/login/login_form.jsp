@@ -24,28 +24,51 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
     <!-- css -->
-    <link rel="stylesheet" href="../dist/css/reset.css">
-    <link rel="stylesheet" href="../dist/css/common_header_footer.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common_header_footer.css">
     <link rel="stylesheet" href="css/user_login.css">
 
     <!-- JS -->
-    <script src="../js/scroll.js"></script>
+    <script src="js/scroll.js"></script>
     
     <!-- Google CDN -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script type="text/javascript">
-
+<script type="text/javascript">
+    
+    <c:if test="${ not empty sessionScope.id }">
+    location.replace("book.do");
+    </c:if>
+    
+    <c:if test="${ updateFlag eq true }">
+    alert("비밀번호가 변경되었습니다.");
+    </c:if>
+    <c:if test="${ updateFlag eq false }">
+    alert("비밀번호 변경 중 문제가 발생하였습니다.\n잠시후 다시 시도해주세요.");
+    </c:if>
+    
 	$(function() {
 		$("#login_btn").click(function(){ 
 			if($("#user_id").val()=="") {
-				alert("아이디를 입력하세요.");
+				alert("아이디를 입력해 주세요.");
 				return;
 			}//end if
 			if($("#user_pass").val()=="") {
-				alert("비밀번호를 입력하세요.");
+				alert("비밀번호를 입력해 주세요.");
 				return;
 			}//end if
 			$("#frm").submit();
+		})//click
+		
+		$("#join_btn").click(function() {
+			location.href="agreement.do";
+		})//click
+		
+		$("#findId_btn").click(function() {
+			location.href="find_id_form.do";
+		})//click
+		
+		$("#findPass_btn").click(function() {
+			location.href="find_pass_form.do";
 		})//click
 	});//ready
 
@@ -65,18 +88,24 @@
             <div class="login_title">LOGIN</div>
             <div class="login_input">
                 <form action="login_process.do" id="frm" method="POST">
-                    <input type="text" class="input_id" name="user_id" id="user_id">
+                    <input type="text" class="input_id" name="user_id" id="user_id" value="${ user_id }">
                     <input type="button" class="login_btn" value="로그인" id="login_btn">
                     <input type="password" class="input_pass" name="user_pass" id="user_pass">
                     <span>
-                        <input type="checkbox" id="remember_chk" class="remember_chk" value="remember">
-                        <label for="remember_chk">아이디 기억</label>
+                    	<c:if test="${ empty user_id }">
+                        <input type="checkbox" id="remember_chk" name="remember_chk" class="remember_chk" value="remember">
+                        </c:if>
+                    	<c:if test="${ not empty user_id }">
+                        <input type="checkbox" id="remember_chk" name="remember_chk" class="remember_chk" value="remember" checked="checked">
+                    	</c:if>
+                        <label for="remember_chk">아이디 저장</label>
                     </span>
                 </form>
+                <div id="login_err" style="color: red"><c:out value="${ err_msg }"/></div>
                 <div class="btns_wrap">
-                    <a href="member_join_form.do"><input type="button" class="join_btn" value="회원가입"></a>
-                    <a href="find_id_form.do"><input type="button" class="find_btn" value="아이디찾기"></a>
-                    <a href="find_pass_form.do"><input type="button" class="find_btn" value="비밀번호찾기"></a>
+                    <input type="button" class="join_btn" value="회원가입" id="join_btn">
+                    <input type="button" class="find_btn" value="아이디찾기" id="findId_btn">
+                    <input type="button" class="find_btn" value="비밀번호찾기" id="findPass_btn">
                 </div>
             </div>
         </div>

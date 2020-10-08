@@ -24,12 +24,44 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
     <!-- css -->
-    <link rel="stylesheet" href="../dist/css/reset.css">
-    <link rel="stylesheet" href="../dist/css/common_header_footer.css">
-    <link rel="stylesheet" href="../dist/css/user_find_pw_change.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common_header_footer.css">
+    <link rel="stylesheet" href="css/user_find_pw_change.css">
 
     <!-- JS -->
-    <script src="../js/scroll.js"></script>
+    <script src="js/scroll.js"></script>
+<script type="text/javascript">
+	
+	<c:if test="${ empty user_id }">
+	alert("입력하신 회원 정보가 존재하지 않습니다.");
+	location.replace("find_pass_form.do");
+	</c:if>
+	
+	$(function() {
+		$("#pass2").focusout(function() {
+			if($("#pass").val()!=$("#pass2").val()){
+				alert("비밀번호를 확인해 주세요.")
+				$("#pass").val("");
+				$("#pass2").val("");
+			}//end if
+		});//focusout
+		
+		$("#changePassBtn").click(function() {
+			if($("#pass").val()=="") {
+				alert("비밀번호를 입력해 주세요.");
+				return;
+			}//end if
+			if($("#pass2").val()=="") {
+				alert("비밀번호 확인을 입력해 주세요.");
+				return;
+			}//end if
+			$("#frm").submit();
+		});//click
+		
+		
+	});//ready
+	
+</script>
 </head>
 
 <body>
@@ -44,10 +76,11 @@
         <div class="login_wrap">
             <div class="login_title">비밀번호 변경</div>
             <div class="login_input">
-                <form action="#void">
-                    <input type="text" class="input_new_pw" placeholder="새 비밀번호">
-                    <input type="button" class="find_btn" value="비밀번호 변경">
-                    <input type="text" class="input_new_pw2" placeholder="다시 입력해주세요">
+                <form id="frm" action="change_pass.do" method="post">
+                	<input type="hidden" value="${ user_id }" name="user_id"/>
+                    <input type="password" class="input_new_pw" placeholder="새 비밀번호" id="pass">
+                    <input type="button" class="find_btn" value="비밀번호 변경" id="changePassBtn">
+                    <input type="password" class="input_new_pw2" placeholder="비밀번호 확인" id="pass2" name="user_pass">
                 </form>
             </div>
         </div>

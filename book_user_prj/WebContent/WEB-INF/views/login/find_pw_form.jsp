@@ -24,12 +24,36 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
     <!-- css -->
-    <link rel="stylesheet" href="../dist/css/reset.css">
-    <link rel="stylesheet" href="../dist/css/common_header_footer.css">
-    <link rel="stylesheet" href="../dist/css/user_find_pw.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common_header_footer.css">
+    <link rel="stylesheet" href="css/user_find_pw.css">
 
     <!-- JS -->
-    <script src="../js/scroll.js"></script>
+    <script src="js/scroll.js"></script>
+<script type="text/javascript">
+	
+	<c:if test="${ errFlag }">
+	alert("입력하신 회원 정보가 존재하지 않습니다.");
+	</c:if>
+
+	$(function() {
+		$("#findPassBtn").click(function(){ 
+			if($("#user_id").val()=="") {
+				alert("아이디를 입력해 주세요.");
+				return;
+			}//end if
+			if($("#user_name").val()=="") {
+				alert("이름을 입력해 주세요.");
+				return;
+			}//end if
+			if($("#user_phone").val()=="") {
+				alert("핸드폰 번호를 입력해 주세요.");
+				return;
+			}//end if
+			$("#frm").submit();
+		})//click
+	});//ready
+</script>
 </head>
 
 <body>
@@ -44,14 +68,14 @@
         <div class="login_wrap">
             <div class="login_title">비밀번호 찾기</div>
             <div class="login_input">
-                <form action="#void">
-                    <input type="text" class="input_id" placeholder="아이디를 입력해주세요">
-                    <input type="button" class="find_btn" value="비밀번호 찾기">
-                    <input type="text" class="input_name" placeholder="이름을 입력해주세요">
-                    <input type="password" class="input_phone" placeholder="핸드폰 번호를 입력해주세요">
+                <form id="frm" action="find_pass.do" method="post">
+                    <input type="text" class="input_id" placeholder="아이디를 입력해주세요" id="user_id" name="user_id">
+                    <input type="button" class="find_btn" value="비밀번호 찾기" id="findPassBtn">
+                    <input type="text" class="input_name" placeholder="이름을 입력해주세요" id="user_name" name="user_name">
+                    <input type="password" class="input_phone" placeholder="핸드폰 번호를 입력해주세요" id="user_phone" name="user_phone">
                 </form>
                 <div class="btns_wrap">
-                    <span>혹시 아이디가 생각나지 않으시나요? <a href="user_find_id.html">아이디 찾기</a> </span>
+                    <span>혹시 아이디가 생각나지 않으시나요? <a href="find_id_form.do">아이디 찾기</a> </span>
                 </div>
             </div>
         </div>

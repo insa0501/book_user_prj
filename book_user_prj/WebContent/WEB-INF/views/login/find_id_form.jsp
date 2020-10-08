@@ -24,12 +24,39 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
     <!-- css -->
-    <link rel="stylesheet" href="../dist/css/reset.css">
-    <link rel="stylesheet" href="../dist/css/common_header_footer.css">
-    <link rel="stylesheet" href="../dist/css/user_find_id.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common_header_footer.css">
+    <link rel="stylesheet" href="css/user_find_id.css">
 
     <!-- JS -->
-    <script src="../js/scroll.js"></script>
+    <script src="js/scroll.js"></script>
+    <!-- Google CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+    
+	$(function() {
+		$("#findIdBtn").click(function(){ 
+			if($("#user_name").val()=="") {
+				alert("이름을 입력하세요.");
+				return;
+			}//end if
+			if($("#user_phone").val()=="") {
+				alert("핸드폰 번호를 입력하세요.");
+				return;
+			}//end if
+			$("#frm").submit();
+		})//click
+		
+		$("#pw_find_btn").click(function(){
+			location.href = "find_pass_form.do";
+		});//click
+		
+		$("#login_btn").click(function(){
+			location.href = "login_form.do";
+		});//click
+	});//ready
+
+</script>
 </head>
 
 <body>
@@ -44,14 +71,14 @@
         <div class="login_wrap">
             <div class="login_title">아이디찾기</div>
             <div class="login_input">
-                <form action="#void">
-                    <input type="text" class="input_name" placeholder="이름을 입력해주세요">
-                    <input type="button" class="find_btn" value="아이디 찾기">
-                    <input type="password" class="input_phone" placeholder="핸드폰 번호를 입력해주세요">
+                <form id="frm" action="find_id.do" method="post">
+                    <input type="text" class="input_name" placeholder="이름을 입력해주세요" name="user_name" id="user_name">
+                    <input type="button" class="find_btn" value="아이디 찾기" id="findIdBtn">
+                    <input type="password" class="input_phone" placeholder="핸드폰 번호를 입력해주세요" name="user_phone" id="user_phone">
                 </form>
                 <div class="btns_wrap">
-                    <input type="button" class="pw_find_btn" value="비밀번호 찾기">
-                    <input type="button" class="login_btn" value="로그인하기">
+                    <input type="button" class="pw_find_btn" value="비밀번호 찾기" id="pw_find_btn">
+                    <input type="button" class="login_btn" value="로그인하기" id="login_btn">
                 </div>
             </div>
         </div>

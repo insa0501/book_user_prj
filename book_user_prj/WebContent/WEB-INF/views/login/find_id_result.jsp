@@ -24,14 +24,26 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
     <!-- css -->
-    <link rel="stylesheet" href="../dist/css/reset.css">
-    <link rel="stylesheet" href="../dist/css/common_header_footer.css">
-    <link rel="stylesheet" href="../dist/css/user_find_id_result.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common_header_footer.css">
+    <link rel="stylesheet" href="css/user_find_id_result.css">
 
     <!-- JS -->
-    <script src="../js/scroll.js"></script>
-</head>
+    <script src="js/scroll.js"></script>
+<script type="text/javascript">
 
+	$(function(){
+		$("#pw_find_btn").click(function() {
+			location.replace('find_pass_form.do');
+		});//click
+		
+		$("#login_btn").click(function() {
+			location.replace('login_form.do');
+		});//click
+	});//ready
+	
+</script>
+</head>
 <body>
 
 	<!-- header -->
@@ -46,11 +58,18 @@
             <div class="find_id_input">
                 <div class="find_result">
                     <span>회원님의 아이디는</span>
-                    <span> <span>test123</span> 입니다. </span>
+                    <c:if test="${ empty user_id }">
+                    <span> 존재하지 않습니다.<br/>
+                    <a href="javascript:location.replace('find_id_form.do')">아이디 찾기</a><br/>
+                    <a href="javascript:location.replace('agreement.do')">회원가입</a></span>
+                    </c:if>
+                    <c:if test="${ not empty user_id }">
+                    <span> <span><c:out value="${ user_id }"/></span> 입니다. </span>
+                    </c:if>
                 </div>
                 <div class="btns_wrap">
-                    <input type="button" class="pw_find_btn" value="비밀번호 찾기">
-                    <input type="button" class="login_btn" value="로그인하기">
+                    <input type="button" class="pw_find_btn" value="비밀번호 찾기" id="pw_find_btn">
+                    <input type="button" class="login_btn" value="로그인하기" id="login_btn">
                 </div>
             </div>
         </div>
