@@ -1,55 +1,80 @@
+<%@page import="java.sql.SQLException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- 211.238.142.35 -->
-<link rel="stylesheet" type="text/css" href="http://localhost/spring_mvc_template/common/css/main.css">
-<style type="text/css">
-	#wrap { width:900px; height:930px; margin:0px auto; }
-	#header { width:900px; min-height:210px; }
-	#headerTop { width:900px; height:140px; position:relative; background:#FFFFFF url("http://localhost/spring_mvc_template/common/images/header_bg.png") repeat-x; }
-	#mainText {font-family:고딕,godic,Sans-Serif; font-size:35px; font-weight:bold; width:140px; height:50px; margin:0px auto; padding-top:20px; }
-	#naviBar { width:900px; height:60;}
-	#container { width:900px; height:600px; position:relative; }
-	#footer { width:900px; height:120px; position:relative; }
-	#footerLogo { width:170px; height:60px; margin-left:10px; margin-top:10px; }
-	#footerContent { width:700px; height:100px; margin-left:200px; margin-top:10px; margin-right:20px; 
-				font-family:고딕,gotic; font-size:14px; text-align:right; }
-</style>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<!-- Google CDN  -->
+<link rel="stylesheet" href="css/user_dup_id.css" />
+<title>아이디 확인</title>
+
+<!-- Google CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
 <script type="text/javascript">
-	$(function() {
-		
-	}); //ready
+	$(function(){
+	   $("#btn").click(function(){
+	      chkNull();
+	   });//click
+	   
+	   $("[name='check_id']").keydown(function(evt){
+	      if(evt.which == 13 ){
+	         chkNull();
+	      }//end if
+	   });//keydown
+	});//ready
+
+   function chkNull(){
+      if($("[name='check_id']").val().trim()==""){
+         alert("중복검사에 사용할 아이디는 필수 입력입니다.");
+         return;
+      }//end if
+      
+      if($("[name='check_id']").val().replace(/[0-9A-Za-zㄱ-힣]/g, "") != ""){
+         alert("아이디는 숫자, 소문자, 대문자,한글로만 이루어질 수 있습니다.");
+         $("[name='id']").val("");
+         return;
+      }//end if
+      
+      $("[name='cFrm']").submit();
+   }//chkNull
+
+   function useId(id){
+      opener.window.document.frm.user_id.value=id;
+      self.close();
+      return;
+   }//useId
+   
+
 </script>
 </head>
 <body>
-<div id="wrap">
-	<div id="header">
-		<div id="headerTop">
-			<div id="mainText" title="Class A">Class A.</div>
-		</div>
-		<div id="naviBar">
-			<c:import url="/common/jsp/menu.jsp"/>
-		</div>
-	</div>
-	<div id="container">
-	</div>
-	<div id="footer">
-		<div id="footerLogo"></div>
-		<div id="footerContent">
-			&copy;Copy Right. All Right Reserved. Class A.
-		</div>
-		
-	</div>
+<div class="top_line"></div>
+
+<div id="idWrap" class="id_wrap">
+   <form name="cFrm" action="dup_id.do" method="get">
+	   <div id="idFrm" class="id_form">
+	      <label>아이디</label>
+	      <input type="text" name="check_id" class="inputBox" id="check_id"/>
+	      <input type="text" style="display:none"/>
+	      <input type="button" value="사용" id="btn" name="btn" class="useBtn" />
+	   </div>
+	   <c:if test="${ DupFlag }">
+   			<c:if test="${ empty user_id }">
+			<div id="id_possible">
+			   	<c:out value="${ check_id }"/> 아이디는 사용 가능합니다.
+			   	<a href="#void" id="use" class="use_id" onclick="useId('${check_id}')">사용하기</a>
+			</div>
+   			</c:if>
+   			<c:if test="${ not empty user_id }">
+			<div id="id_warning">
+			   	<c:out value="${ user_id }"/> 아이디는 중복된 아이디 입니다.
+			</div>
+   			</c:if>
+	   </c:if>
+   </form>
 </div>
 </body>
 </html>

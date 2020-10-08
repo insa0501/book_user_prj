@@ -24,45 +24,32 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
     <!-- css -->
-    <link rel="stylesheet" href="../dist/css/reset.css">
-    <link rel="stylesheet" href="../dist/css/common_header_footer.css">
-    <link rel="stylesheet" href="../dist/css/user_join_done.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common_header_footer.css">
+    <link rel="stylesheet" href="css/user_join_done.css">
 
     <!-- JS -->
-    <script src="../js/scroll.js"></script>
+    <script src="js/scroll.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		$("#go_main").click(function() {
+			location.href="/book.do";
+		});//click
+		
+		$("#login_btn").click(function() {
+			location.href="login_form.do";
+		});//click
+	});//ready
+	
+</script>
 </head>
 
 <body>
 
-    <!-- header -->
-    <section class="section_header">
-        <div class="topper_nav" id="topper_nav">
-            <ul>
-                <li class="topper_nav_login"><a href="user_login.html">로그인</a></li>
-                <li><a href="#void">마이페이지</a></li>
-                <li><a href="user_search.html">검색</a></li>
-                <li><a href="#void">고객센터</a></li>
-            </ul>
-            <div class="nav_big_logo">
-                BOOKS
-            </div>
-        </div>
-        <div class="header_nav nav-down" id="header_nav">
-            <div class="nav_logo gone">BOOKS</div>
-            <ul class="nav_menu">
-                <li class="nav_best_seller">베스트셀러</li>
-                <li class="nav_kor_book">국내도서</li>
-                <li class="nav_for_book">외국도서</li>
-                <li class="nav_new_book">신간도서</li>
-                <li class="nav_event">이벤트</li>
-            </ul>
-            <div class="nav_user_icons gone">
-                <span><i class="fas fa-sign-in-alt"></i></span>
-                <span><i class="far fa-user"></i></span>
-                <span><i class="fas fa-search"></i></span>
-            </div>
-        </div>
-    </section> <!-- header end -->
+	<!-- header -->
+	<c:import url="../common/common_header.jsp" />
+	<!-- header end -->
 
 
     <!-- main section -->
@@ -73,11 +60,11 @@
                 <div class="find_result">
                     <i class="fas fa-user-astronaut fa-3x"></i>
                     <span>회원가입이 완료되었습니다.</span>
-                    <span> <span>test123</span>님의 회원가입을 축하합니다!</span>
+                    <span> <span><c:out value="${ user_id }"/></span>님의 회원가입을 축하합니다!</span>
                 </div>
                 <div class="btns_wrap">
-                    <input type="button" class="go_main" value="메인으로">
-                    <input type="button" class="login_btn" value="로그인하기">
+                    <input type="button" class="go_main" value="메인으로" id="go_main">
+                    <input type="button" class="login_btn" value="로그인하기" id="login_btn">
                 </div>
             </div>
         </div>
