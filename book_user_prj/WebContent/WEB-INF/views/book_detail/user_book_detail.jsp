@@ -35,15 +35,15 @@
   function cart() {//장바구니
 	  var con1 = confirm("장바구니로 이동하시겠습니까?");
   
-	 if( con1 == true){ //true : 장바구니로 이동O
+	 if( con1 ){ //true : 장바구니로 이동O
+		 
+		 $("#redirectFlag").val("true");
 		 orderBookFrm.submit();
 	 
 	 }else{//false : 정보는 넘기지만 장바구니로 이동X
 		 
+		 $("#redirectFlag").val("false");
 		 orderBookFrm.submit();
-	     alert("왜 값 안넘어가!!!!!!");
-	 
-		 location.href="book_detail.do?book_isbn=${book_detail.book_isbn}";
 		 
 	 }
 	
@@ -72,7 +72,6 @@
 
     <!-- 제목, 저자, 출판사, 출판일 -->
     <div class="book_titles">
-      <div class="title">${book_detail.book_isbn}</div><!-- 여긴 화면에 나오는데 왜 isbn이 장바구니로 넘어가지 않니.. -->
       <div class="title">${book_detail.book_name}</div>
       <div class="others">
         <span class="author">${book_detail.book_writer}</span>
@@ -87,6 +86,7 @@
       <input type="hidden" value="${book_detail.book_name}" name="book_name">
       <input type="hidden" value="${book_detail.book_price}" name="book_price">
       <input type="hidden" value="${book_detail.book_isbn}" name="book_isbn">
+      <input type="hidden" id="redirectFlag" name="redirectFlag">
 
       <div class="book_info_wrap">
         <!--책 이미지 -->

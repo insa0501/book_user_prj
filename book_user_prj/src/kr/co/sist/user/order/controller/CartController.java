@@ -26,7 +26,7 @@ public class CartController {
    
    
    @RequestMapping(value = "/set_session.do", method = RequestMethod.GET )
-   public String addCart(HttpSession session, CartListVO clVO) {      
+   public String addCart(HttpSession session, CartListVO clVO, String redirectFlag) {      
 
       CartService cs = new CartService();
       
@@ -36,8 +36,13 @@ public class CartController {
       System.out.println(clVO.getBook_price());
       
       cs.addSession(session, clVO);
+      String url="get_cart_list.do";
+      if( "false".equals(redirectFlag)){
+    	  url="book_detail.do?book_isbn="+clVO.getBook_isbn();
+      }//end if
+      
 
-      return "redirect:get_cart_list.do";
+      return "redirect:"+url;
    }//addCart
    
    @RequestMapping(value = "/remove_session.do", method = RequestMethod.GET )
