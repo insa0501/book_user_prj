@@ -146,7 +146,7 @@
       <!-- title wrap -->
 
       <div class="cart_wrap">
-        <form action="order_done.do" id="pay_frm">
+        <form action="order.do" id="pay_frm">
           <!-- 결제할 물건들 목록 표 ul-->
           <ul class="cart_list_table">
             <li>
@@ -287,10 +287,34 @@
               <li>
                 <span>카드번호</span>
                 <span>
-                  <input type="text" class="input_text" name="card_no1"/>
-                  <input type="text" class="input_text" name="card_no2"/>
-                  <input type="text" class="input_text" name="card_no3"/>
-                  <input type="text" class="input_text" name="card_no4"/>
+                  <input
+                    type="text"
+                    class="input_text"
+                    name="card_no1"
+                    id="card_no1"
+                    onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+                  />
+                  <input
+                    type="text"
+                    class="input_text"
+                    name="card_no2"
+                    id="card_no2"
+                    onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+                  />
+                  <input
+                    type="text"
+                    class="input_text"
+                    name="card_no3"
+                    id="card_no3"
+                    onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+                  />
+                  <input
+                    type="text"
+                    class="input_text"
+                    name="card_no4"
+                    id="card_no4"
+                    onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+                  />
                 </span>
               </li>
               <li>

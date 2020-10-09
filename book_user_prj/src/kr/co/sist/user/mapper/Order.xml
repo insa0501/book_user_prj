@@ -32,8 +32,12 @@
 		values(#{order_no}, #{card_company}, #{card_exp_date1},#{card_exp_date2}, #{card_no1},#{card_no2},#{card_no3},#{card_no4},sysdate)
 	</insert>
 	
-	<select id="selectOrderNo" resultType="String">
-		select last_number from user_sequences
-		where sequence_name=upper('seq_order_no')
+	<select id="selectOrderNo" resultType="String" parameterType="String">
+		select order_no
+		from ( select *
+				from order_list 
+				where user_id = #{ user_id }
+				order by order_date desc)
+		where rownum = 1
 	</select>
 </mapper>

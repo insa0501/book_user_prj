@@ -39,34 +39,41 @@ public class OrderDAO {
 	   String orderNo = ss.selectOne("selectNextVal");
 	   
 	   orVO.setOrder_no(orderNo);
+	   System.out.println("주문번호 --------> "+ orderNo);
 	   
-	   ss.insert("insertOrderList", orVO);
+	   insertResult += ss.insert("insertOrderList", orVO);
 
 	   OrderBookVO obVO = new OrderBookVO();
 	   obVO.setOrder_no(orderNo);
 	   
 	   String[] bookIsbnArr = orVO.getBook_isbn();
 	   String[] orderBookCntArr = orVO.getOrder_book_cnt();
+	   boolean flag = false;
 	   
 	   for(int ind=0; ind<bookIsbnArr.length; ind++) {
 		   obVO.setBook_isbn(bookIsbnArr[ind]);
 		   obVO.setOrder_book_cnt(orderBookCntArr[ind]);
 		   ss.insert("insertOrderBook", obVO);   
+		   flag = bookIsbnArr.length-1 == ind ? true:false;
 	   }
-
-	   ss.insert("insertPayment", orVO);
+	   insertResult = flag?insertResult+1:insertResult;
 	   
-	   ss.commit();
+	   insertResult += ss.insert("insertPayment", orVO);
+	   
+	   if( insertResult == 3) {
+		   ss.commit();	   
+	   }
+	   
 	   return insertResult;
 	   
    }
    
-   public String selectOrderNo() {
+   public String selectOrderNo(String user_id) {
 	   String orderNo = "";
 	   
 	   SqlSession ss = GetMyBatisHandler.getInstance().getSqlSession();
-	   orderNo = ss.selectOne("selectOrderNo");
-	   
+	   System.out.println(user_id+"====================== user_id");
+	   orderNo = ss.selectOne("selectOrderNo", user_id);
 	   return orderNo;
    }
    

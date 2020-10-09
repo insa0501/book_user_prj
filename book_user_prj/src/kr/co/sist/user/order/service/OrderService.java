@@ -21,17 +21,20 @@ public class OrderService {
 		boolean addResult = false;
 		
 		OrderDAO oDAO = OrderDAO.getInstance();
-		addResult = oDAO.InsertOrder(orVO) > 0 ? true : false;
+		int result = oDAO.InsertOrder(orVO);
+		addResult = result > 0 ? true : false;
 		
 		return addResult;
 	}//addOrder
 	
-	public String searchOrderNo() {
+	public String searchOrderNo(String user_id) {
 		String orderNo = "";
 		
 		OrderDAO oDAO = OrderDAO.getInstance();
 		
-		orderNo = oDAO.selectOrderNo();
+		orderNo = oDAO.selectOrderNo(user_id);
+		System.out.println(user_id+"====================== user_id");
+		System.out.println(orderNo+"====================== orderNo");
 		
 		return orderNo;
 	}
