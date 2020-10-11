@@ -54,6 +54,18 @@
 	
 	if(con2){
 		paymentBookFrm.order_book_cnt.value	 =  orderBookFrm.order_book_cnt.value ;
+		
+		
+		//소계
+		paymentBookFrm.hidden_sub_total.value = orderBookFrm.order_book_cnt.value * paymentBookFrm.hidden_book_price.value;
+		//상품총금액 
+		paymentBookFrm.hidden_total_book_price.value = paymentBookFrm.hidden_sub_total.value;
+		//배송비
+		paymentBookFrm.hidden_shipping.value = paymentBookFrm.hidden_total_book_price.value >= 10000 ? 0 : 3000;
+		//총합
+		paymentBookFrm.hidden_total_price.value = paymentBookFrm.hidden_sub_total.value*1 + paymentBookFrm.hidden_shipping.value*1;
+		
+		
 		paymentBookFrm.submit();
 	}
 	
@@ -84,10 +96,14 @@
  <!-- 책 제목, 금액, 갯수를 form으로 넘김 -->
      <form action="payment.do" name="paymentBookFrm" id="paymentBookFrm">
       <!-- form으로 값 넘겨주기 위한 hidden -->
-      <input type="hidden" value="${book_detail.book_name}" name="book_name">
-      <input type="hidden" value="${book_detail.book_price}" name="book_price">
-      <input type="hidden" value="${book_detail.book_isbn}" name="book_isbn">
-      <input type="hidden" name="order_book_cnt" id="order_book_cnt">
+      <input type="hidden" value="${book_detail.book_name}" name="hidden_book_title">
+      <input type="hidden" value="${book_detail.book_price}" name="hidden_book_price" id="hidden_book_price">
+      <input type="hidden" value="${book_detail.book_isbn}" name="hidden_book_isbn">
+      <input type="hidden" name="book_cnt" id="order_book_cnt">
+      <input type="hidden" name="hidden_total_book_price" id="hidden_total_book_price">
+      <input type="hidden" name="hidden_sub_total" id="hidden_sub_total">
+      <input type="hidden" name="hidden_total_price" id="hidden_total_price">
+      <input type="hidden" name="hidden_shipping" id="hidden_shipping">
       </form>  
     
     <form action="set_session.do" name="orderBookFrm" id="orderBookFrm">
