@@ -52,8 +52,9 @@
   function order() {
 	var con2 = confirm("결제하시겠습니까?");
 	
-	if(con2 == true){
-		 orderBookFrm.submit();
+	if(con2){
+		paymentBookFrm.order_book_cnt.value	 =  orderBookFrm.order_book_cnt.value ;
+		paymentBookFrm.submit();
 	}
 	
 }
@@ -79,8 +80,16 @@
         <span class="pubDate">${book_detail.book_date}</span>
       </div>
     </div>
-
-    <!-- 책 제목, 금액, 갯수를 form으로 넘김 -->
+   <!-- payment.do 구매하기는 여기로... -->
+ <!-- 책 제목, 금액, 갯수를 form으로 넘김 -->
+     <form action="payment.do" name="paymentBookFrm" id="paymentBookFrm">
+      <!-- form으로 값 넘겨주기 위한 hidden -->
+      <input type="hidden" value="${book_detail.book_name}" name="book_name">
+      <input type="hidden" value="${book_detail.book_price}" name="book_price">
+      <input type="hidden" value="${book_detail.book_isbn}" name="book_isbn">
+      <input type="hidden" name="order_book_cnt" id="order_book_cnt">
+      </form>  
+    
     <form action="set_session.do" name="orderBookFrm" id="orderBookFrm">
       <!-- form으로 값 넘겨주기 위한 hidden -->
       <input type="hidden" value="${book_detail.book_name}" name="book_name">
