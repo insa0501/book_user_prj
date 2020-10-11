@@ -28,5 +28,7 @@
 	<mapper resource="kr/co/sist/user/mapper/Order.xml" />
 	<mapper resource="kr/co/sist/user/mapper/MemberJoin.xml" />
 	<mapper resource="kr/co/sist/user/mapper/MyPage.xml" />
+	<mapper resource="kr/co/sist/user/mapper/PaginationMapper.xml" />
+	
   </mappers>
 </configuration>

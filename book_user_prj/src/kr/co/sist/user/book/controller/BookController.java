@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.co.sist.user.book.service.BookService;
 import kr.co.sist.user.book.vo.BookCountryVO;
 import kr.co.sist.user.book.vo.SearchBookVO;
+import kr.co.sist.user.pagination.PageVO;
+import kr.co.sist.user.pagination.PaginationService;
+import kr.co.sist.user.pagination.TotalCntVO;
 
 @Controller
 public class BookController {
@@ -58,16 +61,34 @@ public class BookController {
 	
 	/**
 	 * 국내, 해외 도서 목록을 보여주는 부분. 임포트 해서 들어감
+	 * 
 	 * @param model
 	 * @param bcVO
 	 * @return
 	 */
 	@RequestMapping(value = "/bookList_country.do", method = RequestMethod.GET)
-	public String selectKorBook(BookCountryVO bcVO, Model model) {
-		
+	public String selectKorBook(BookCountryVO bcVO, TotalCntVO tcVO, @RequestParam(defaultValue = "1") int current_page,
+			Model model) {
+
+		PaginationService ps = new PaginationService();
+
+		bcVO.setStart_num(ps.startNum(current_page));
+		bcVO.setEnd_num(ps.endNum(current_page));
+
 		BookService bs = new BookService();
+
+		PageVO pVO = ps.calcPaging(current_page, tcVO);
+
 		model.addAttribute("book_list", bs.bookList(bcVO));
-		
+		model.addAttribute("paging", pVO);
+
+//		System.out.println("current Page=====================>" + pVO.getCurrent_page());
+//		System.out.println("start Page=====================>" + pVO.getStart_page());
+//		System.out.println("end Page=====================>" + pVO.getEnd_page());
+//		System.out.println("pre Page=====================>" + pVO.getPre_page());
+//		System.out.println("next Page=====================>" + pVO.getNext_page());
+//		System.out.println("total Page=====================>" + pVO.getTotal_page());
+
 		return "book/bookList_coun";
 	}
 	

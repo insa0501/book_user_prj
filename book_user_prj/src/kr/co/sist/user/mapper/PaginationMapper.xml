@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.sist.user.pagination">
+	
+	<!-- totalCnt book -->
+	<select id="selectTotalCnt" resultType="int" parameterType="kr.co.sist.user.book.vo.BookCountryVO">
+		select count(*)
+		from book
+		<where>
+			book_activity = 'Y'
+				<if test="book eq 'kor'"> and book_country = '국내' </if>
+				<if test="book eq 'for'"> and book_country = '국외' </if>
+				
+				<choose><!-- trim지워도댐 -->
+					<when test="type eq 'science'"> <trim prefix="and"> book_type_no = 0  </trim> </when>
+					<when test="type eq 'kids'"> <trim prefix="and"> book_type_no = 1  </trim> </when>
+					<when test="type eq 'novel'"> <trim prefix="and"> book_type_no = 2  </trim> </when>
+					<when test="type eq 'travel'"> <trim prefix="and"> book_type_no = 3  </trim> </when>
+					<when test="type eq 'cook'"> <trim prefix="and"> book_type_no = 4  </trim> </when>
+					<when test="type eq 'psycho'"> <trim prefix="and"> book_type_no = 5  </trim> </when>
+					<otherwise> <!-- 전체를 보여줌 --> </otherwise> 
+				</choose>
+			
+		</where>
+	</select>
+	
+	<select id="selectTotalCntQna" resultType="int" parameterType="kr.co.sist.user.qna.vo.SelectQnaVO">
+		select count(*)
+		from QNA
+	</select>
+
+
+</mapper>

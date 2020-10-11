@@ -8,22 +8,25 @@
 		resultType="kr.co.sist.user.book.domain.BookDomain"
 		parameterType="kr.co.sist.user.book.vo.BookCountryVO">
 		select book_isbn, book_img, book_name, book_price
-		from book
-		<where>
-			book_activity = 'Y'
-			<if test="book eq 'kor'"> and book_country = '국내' </if>
-			<if test="book eq 'for'"> and book_country = '국외' </if>
-			
-			<choose>
-				<when test="type eq 'science'"> <trim prefix="and"> book_type_no = 0  </trim> </when>
-				<when test="type eq 'kids'"> <trim prefix="and"> book_type_no = 1  </trim> </when>
-				<when test="type eq 'novel'"> <trim prefix="and"> book_type_no = 2  </trim> </when>
-				<when test="type eq 'travel'"> <trim prefix="and"> book_type_no = 3  </trim> </when>
-				<when test="type eq 'cook'"> <trim prefix="and"> book_type_no = 4  </trim> </when>
-				<when test="type eq 'psycho'"> <trim prefix="and"> book_type_no = 5  </trim> </when>
-				<otherwise> <!-- 전체를 보여줌 --> </otherwise> 
-			</choose>
-		</where>
+		from(select book_isbn, book_img, book_name, book_price, rownum rnum
+			from book
+			<where>
+				book_activity = 'Y'
+				<if test="book eq 'kor'"> and book_country = '국내' </if>
+				<if test="book eq 'for'"> and book_country = '국외' </if>
+				
+				<choose><!-- trim지워도댐 -->
+					<when test="type eq 'science'"> and book_type_no = 0 </when>
+					<when test="type eq 'kids'"> and book_type_no = 1 </when>
+					<when test="type eq 'novel'"> and book_type_no = 2 </when>
+					<when test="type eq 'travel'"> and book_type_no = 3 </when>
+					<when test="type eq 'cook'"> and book_type_no = 4 </when>
+					<when test="type eq 'psycho'"> and book_type_no = 5 </when>
+					<otherwise> <!-- 전체를 보여줌 --> </otherwise> 
+				</choose>
+			</where>
+		)
+		where rnum between #{start_num} and #{end_num}
 	</select>
 	
 	
