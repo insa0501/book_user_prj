@@ -2,7 +2,7 @@ package kr.co.sist.user.qna.vo;
 
 public class SelectQnaVO {
 	private int qna_no;
-	private String user_id;
+	private String id;//¿Öuser_id¿¡¼­,,,
 	
 	public int getQna_no() {
 		return qna_no;
@@ -10,11 +10,13 @@ public class SelectQnaVO {
 	public void setQna_no(int qna_no) {
 		this.qna_no = qna_no;
 	}
-	public String getUser_id() {
-		return user_id;
+	public String getId() {
+		return id;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setId(String id) {
+		this.id = id;
 	}
+	
+	
 	
 } // class

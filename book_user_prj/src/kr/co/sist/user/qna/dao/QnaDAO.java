@@ -34,7 +34,7 @@ public class QnaDAO {
 		
 		SqlSession ss = GetMyBatisHandler.getInstance().getSqlSession();
 		list =  ss.selectList("qna_select",sqVO);
-		
+	 
 		ss.close();
 		
 		return list;
@@ -54,10 +54,13 @@ public class QnaDAO {
 		
 	} // insertQna
 	
-	public static void main(String[] args) {
-		QnaAddVO qaVO = new QnaAddVO();
+/*	public static void main(String[] args) {
+		SelectQnaVO sqVO = new SelectQnaVO();
 		 
-		System.out.println(qaVO.getQna_subject()+"  /  "+ qaVO.getQna_type()+"  /  "+qaVO.getQna_content());
-	}
+	 	System.out.println("user_id Âï¾îº½ ----> "+sqVO.getId());
+	}*/
+	
+	
+	 
 	
 } // class

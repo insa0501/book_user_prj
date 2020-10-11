@@ -4,7 +4,7 @@
   <select id="qna_insert" parameterType="kr.co.sist.user.qna.vo.QnaAddVO">
   	<!-- id session에 넣은거 확인 되면 id로 바꾸기 -->
   	insert into QNA(qna_no,user_id, qna_type, qna_subject, qna_content, qna_ip,qna_input_date)
-    values (seq_qna_no.nextval,'test1', '${qna_type}', '${qna_subject}', '${qna_content}', '${qna_ip}' ,sysdate)
+    values (seq_qna_no.nextval,'${id}', '${qna_type}', '${qna_subject}', '${qna_content}', '${qna_ip}' ,sysdate)
     
   </select>
 </mapper>  

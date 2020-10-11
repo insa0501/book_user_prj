@@ -38,7 +38,7 @@ public class QnaController {
 	@RequestMapping(value="/qna_list.do", method=GET)
 	public String qnaListPage(HttpSession session, Model model, SelectQnaVO sqVO) {
 		
-		sqVO.setUser_id( (String)session.getAttribute("user_id"));//session에서 user_id 얻기
+		sqVO.setId( (String)session.getAttribute("id"));//session에서 user_id 얻기
 		
 		QnaService qs = new QnaService();
 		qs.searchQnaList(sqVO);
@@ -73,7 +73,7 @@ public class QnaController {
 		
 	   // QnaAddVO qaVO = new QnaAddVO();
 	    qaVO.setQna_ip(request.getRemoteAddr()); //HttpServletRequest의 getRemoteAddr()로 사용자 ip 가져오기
-		qaVO.setUser_id((String)session.getAttribute("user_id")); //session에서 user_id 얻기
+		qaVO.setId((String)session.getAttribute("id")); //session에서 user_id 얻기
 	    
 		QnaService qs = new QnaService();
 		qs.addQna(qaVO);
