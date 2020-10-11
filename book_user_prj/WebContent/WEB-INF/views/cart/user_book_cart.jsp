@@ -65,11 +65,7 @@
 
         for (var cart_ind = 0; cart_ind < cart_book.length; cart_ind++) {
           console.log(book_chk[cart_ind].value);
-          // console.log(book_chk.querySelector(checked));
-          // console.log(cart_ind + "번 책 수량 " + book_cnt[cart_ind].value);
-          // console.log(
-          //   cart_ind + "번 책 가격 " + book_price[cart_ind].innerText
-          // );
+
 
           //책수량이 0이 되면 경고창을 띄워줌
           if (book_cnt[cart_ind].value < 1) {
@@ -151,6 +147,8 @@
           return;
         }
 
+        var price = 0;
+        var shipping = 0;
         for (var cart_ind = 0; cart_ind < cart_book.length; cart_ind++) {
           hidden_book_title[cart_ind].value = "";
           hidden_book_price[cart_ind].value = "";
@@ -162,15 +160,6 @@
             if (book_chk[cart_ind].checked) {
               chk_flag++;
               console.log(chk_flag);
-              // console.log(
-              //   "hidden 책 제목의 초기값" + hidden_book_title[cart_ind].value
-              // );
-              // console.log(
-              //   "체크 결과가 잘 타는지" +
-              //     book_chk[cart_ind].checked +
-              //     " " +
-              //     cart_ind
-              // );
 
               hidden_book_isbn[cart_ind].value = book_isbn[cart_ind].value;
               hidden_book_title[cart_ind].value = book_title[cart_ind].innerText;
@@ -179,6 +168,9 @@
               hidden_sub_total[cart_ind].value = sub_total[cart_ind].innerText;
 
             } //end if
+	        hidden_total_book_price[0].value = total_book_price.innerText;
+	        hidden_shipping[0].value = shipping_price.innerText;
+	        hidden_total_price[0].value = total_order_price.innerText;
           } //end if
 
           if (id == "order_all") {
@@ -189,11 +181,17 @@
             hidden_book_price[cart_ind].value = book_price[cart_ind].innerText;
             hidden_book_cnt[cart_ind].value = book_cnt[cart_ind].value;
             hidden_sub_total[cart_ind].value = sub_total[cart_ind].innerText;
+
+            price += sub_total[cart_ind].innerText*1;
+            shipping = price < 10000 ? 3000 : 0;
+            
+            
+            
+            hidden_total_book_price[0].value = price;
+	        hidden_shipping[0].value = shipping;
+	        hidden_total_price[0].value = price + shipping;
           }
         }
-        hidden_total_book_price[0].value = total_book_price.innerText;
-        hidden_shipping[0].value = shipping_price.innerText;
-        hidden_total_price[0].value = total_order_price.innerText;
 
 
         cart_list.submit();
