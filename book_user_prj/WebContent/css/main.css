@@ -161,3 +161,7 @@
     padding: 20px 70px;
     text-align: right;
 }
+
+.see_more a {
+	color: black;
+}

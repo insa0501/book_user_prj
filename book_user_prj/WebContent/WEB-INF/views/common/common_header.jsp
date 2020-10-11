@@ -14,12 +14,12 @@
 				</c:if>
 				<li><a href="order_list.do">마이페이지</a></li>
 				<li><a href="user_book_search_frm.do">검색</a></li>
-				<li><a href="#void">고객센터</a></li>
+				<li><a href="qna_list.do">고객센터</a></li>
 			</ul>
-			<div class="nav_big_logo"><a href="book.do">BOOKS</a></div>
+			<div class="nav_big_logo logo"><a href="book.do">BOOKS</a></div>
 		</div>
 		<div class="header_nav nav-down" id="header_nav">
-			<div class="nav_logo gone"><a href="book.do">BOOKS</a></div>
+			<div class="nav_logo logo gone"><a href="book.do">BOOKS</a></div>
 			<ul class="nav_menu">
 				<li class="nav_best_seller"><a href="bookbest.do?book=best">베스트셀러</a></li>
 				<li class="nav_kor_book"><a href="booklist.do?book=kor">국내도서</a></li>

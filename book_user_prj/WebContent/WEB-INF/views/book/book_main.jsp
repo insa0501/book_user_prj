@@ -43,7 +43,7 @@
 <link rel="stylesheet"	href="css/main.css">
 
 <!-- js -->
-<script src="http://localhost/book_user_prj/js/scroll.js"></script>
+<script src="js/scroll.js"></script>
 
 </head>
 
