@@ -34,7 +34,7 @@
 
 	$(function() {
 		$("#go_main").click(function() {
-			location.href="/book.do";
+			location.href="book.do";
 		});//click
 		
 		$("#login_btn").click(function() {

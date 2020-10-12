@@ -1,5 +1,7 @@
 package kr.co.sist.user.mypage.dao;
 
+import java.io.Closeable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -13,6 +15,7 @@ import kr.co.sist.user.mypage.domain.UserInfoDomain;
 import kr.co.sist.user.mypage.vo.SelectOrderListVO;
 import kr.co.sist.user.mypage.vo.UserCheckVO;
 import kr.co.sist.user.mypage.vo.UserInfoVO;
+import kr.co.sist.user.mypage.vo.UserResignDataVO;
 import kr.co.sist.user.mypage.vo.UserResignVO;
 
 public class MypageDAO {
@@ -154,16 +157,16 @@ public class MypageDAO {
 		return cnt;
 	} // updateUserInfo
 	
-	public static void main(String[] args) {
-//		UserInfoVO uiVO = new UserInfoVO();
-//		uiVO.setUser_addr1("인천시");
-//		uiVO.setUser_addr2("부평구");
-//		uiVO.setUser_id("test1");
-//		uiVO.setUser_pass("1234");
-//		uiVO.setUser_phone("01012341234");
-//		uiVO.setUser_zipcode("12345");
-//		System.out.println(MypageDAO.getInstance().updateUserInfo(uiVO));
-	}
+	public String selectResignId(UserResignVO urVO) {
+		String chk_id = "";
+		
+		SqlSession ss = GetMyBatisHandler.getInstance().getSqlSession();
+		chk_id = ss.selectOne("selectResId", urVO);
+		ss.close();
+		
+		return chk_id;
+	}//selectResignId
+	
 	/**
 	 * 회원탈퇴 처리
 	 * @param urVO
@@ -172,6 +175,26 @@ public class MypageDAO {
 	public int updateUserResign(UserResignVO urVO) {
 		int cnt = 0;
 		
+		SqlSession ss = GetMyBatisHandler.getInstance().getSqlSession();
+		cnt = ss.update("updateResign", urVO);
+		ss.commit();
+		ss.close();
+		
 		return cnt;
 	} // updateUserResign
+	
+	
+	/**
+	 * 탈퇴정보 테이블 값 추가
+	 * @param urdVO
+	 */
+	public void insertResdata(UserResignDataVO urdVO) {
+		
+		SqlSession ss = GetMyBatisHandler.getInstance().getSqlSession();
+		ss.insert("insertResgin",urdVO);
+		ss.commit();
+		ss.close();
+		
+	}//insertResdata
+	
 } // class

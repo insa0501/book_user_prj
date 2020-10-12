@@ -4,6 +4,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +23,7 @@ import kr.co.sist.user.mypage.vo.PageNationVO;
 import kr.co.sist.user.mypage.vo.SelectOrderListVO;
 import kr.co.sist.user.mypage.vo.UserCheckVO;
 import kr.co.sist.user.mypage.vo.UserInfoVO;
+import kr.co.sist.user.mypage.vo.UserResignVO;
 
 @Controller
 public class MypageController {
@@ -202,10 +204,30 @@ public class MypageController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/user_resign_process.do", method=GET)
-	public String userResign(HttpSession session, Model model) {
+	@RequestMapping(value="/user_resign_process.do", method=POST)
+	public String userResign(HttpSession session, String user_pass, String[] chk, Model model) {
+		String path = "customer_service/my_page_resign";
 		
-		return "customer_service/my_page_resign";
+		MypageService ms = new MypageService();
+		
+		UserResignVO urVO = new UserResignVO();
+		urVO.setUser_id((String)session.getAttribute("id"));
+		urVO.setUser_pass(user_pass);
+		
+		List<String> list = new ArrayList<String>();
+		for(String data : chk) {
+			list.add(data);
+		}//end for
+		urVO.setUser_resdata(list);
+		
+		boolean res_flag = ms.userResign(urVO);		
+		model.addAttribute("res_flag",res_flag);
+		
+		if(res_flag) {
+			path = "forward:logout_process.do";
+		}//end if
+		
+		return path;
 	} // userResignForm
 	
 	

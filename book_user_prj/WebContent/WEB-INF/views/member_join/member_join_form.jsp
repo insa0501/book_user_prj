@@ -39,7 +39,7 @@
 $(function(){
 	
 	$("#cancelBtn").click(function() {
-		location.replace("main_index.do");
+		location.replace("book.do");
 	})//click
 	
 <%-- ID 팝업창 --%>

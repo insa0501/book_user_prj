@@ -87,6 +87,24 @@
   		where	user_id = #{user_id}
   	</update>
 	
-  	<!-- 탈퇴 -->
+	<!-- 탈퇴 시 비번 검증 -->
+	<select id="selectResId" resultType="String" parameterType="kr.co.sist.user.mypage.vo.UserCheckVO">
+		select	user_id
+		from	member
+		where	user_id=#{user_id} and user_pass=#{user_pass}
+	</select>
+	
+  	<!-- 탈퇴(정보 null로 변경) -->
+  	<update id="updateResign" parameterType="kr.co.sist.user.mypage.vo.UserResignVO">
+  		update	member	
+  		set		user_pass = '', user_name='', user_phone = '', user_zipcode= '', user_addr1 = '', user_addr2 = '', user_hiredate = '', user_ip = '', user_status = 'N', user_resign_date = sysdate
+  		where	user_id = #{user_id} and user_pass=#{user_pass}
+  	</update>
+  	
+  	<!-- 탈퇴(탈퇴사유 추가) -->
+  	<insert id="insertResgin" parameterType="kr.co.sist.user.mypage.vo.UserResignDataVO">
+  		insert into resign_data(user_id, user_resdata)
+  		values(#{user_id}, #{user_resdata})
+  	</insert>
   	
 </mapper>

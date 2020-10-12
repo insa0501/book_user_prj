@@ -44,7 +44,18 @@
 
 <!-- js -->
 <script src="js/scroll.js"></script>
+<!-- Google CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
 
+	$(function() {
+		
+		<c:if test="${ res_flag }">
+		alert("탈퇴되었습니다.");
+		</c:if>
+		
+	});//ready
+</script>
 </head>
 
 <body>

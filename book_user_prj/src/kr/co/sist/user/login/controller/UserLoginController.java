@@ -101,7 +101,7 @@ public class UserLoginController {
 	 * @param ss
 	 * @return
 	 */
-	@RequestMapping(value="/logout_process.do", method=GET)
+	@RequestMapping(value="/logout_process.do", method= {GET,POST})
 	public String logoutProcess(SessionStatus ss) {
 		
 		ss.setComplete();

@@ -14,6 +14,7 @@ import kr.co.sist.user.mypage.vo.PageNationVO;
 import kr.co.sist.user.mypage.vo.SelectOrderListVO;
 import kr.co.sist.user.mypage.vo.UserCheckVO;
 import kr.co.sist.user.mypage.vo.UserInfoVO;
+import kr.co.sist.user.mypage.vo.UserResignDataVO;
 import kr.co.sist.user.mypage.vo.UserResignVO;
 
 public class MypageService {
@@ -109,10 +110,28 @@ public class MypageService {
 	 * @param urVO
 	 * @return
 	 */
-	public int userResign(UserResignVO urVO) {
-		int cnt = 0;
+	public boolean userResign(UserResignVO urVO) {
+		boolean flag = false;
 		
-		return cnt;
+		MypageDAO mDAO = MypageDAO.getInstance();
+		
+		String chk_id = mDAO.selectResignId(urVO);
+		
+		if(!"".equals(chk_id) && chk_id != null) {
+			flag = mDAO.updateUserResign(urVO) != 0;
+		}//end if
+		
+		if(flag) {
+			UserResignDataVO urdVO = null;
+			for(String resdata : urVO.getUser_resdata()) {
+				urdVO = new UserResignDataVO();
+				urdVO.setUser_id(urVO.getUser_id());
+				urdVO.setUser_resdata(resdata);
+				mDAO.insertResdata(urdVO);
+			}//end for
+		}//end if
+		
+		return flag;
 	} // userResign
 	
 	/**
