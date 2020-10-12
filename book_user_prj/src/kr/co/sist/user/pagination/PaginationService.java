@@ -25,7 +25,13 @@ public class PaginationService {
 		return cnt;
 	}//getTotalCnt
 	
-	
+	public int getTotalCntSearch(TotalCntVO tcVO) {
+		int cnt=0;
+		
+		cnt=PaginationDAO.getInstance().selectTotalCntSearch(tcVO);
+		
+		return cnt;
+	}//getTotalCnt
 	
 
 	/**
@@ -133,7 +139,35 @@ public class PaginationService {
 	}//calcPage
 	
 	
-	
+	public PageVO calcPagingSearch(int current_page, TotalCntVO tcVO) {
+		PageVO pVO=null;
+		int total_cnt=getTotalCntSearch(tcVO); //totalCnt를 가져옴
+		
+		int page_scale=pageScale();
+		int total_page=(int)Math.ceil((double)total_cnt/page_scale);
+		
+		int page_range=5; //1~5 / 6~10
+		int start_page=((current_page-1)/page_range)*page_range+1;
+		int end_page=start_page+page_range-1;
+		if(total_page < end_page) {
+			end_page = total_page;
+		}//end if
+		
+		int pre_page=current_page - 1;
+		int next_page=current_page + 1;
+		
+		if( pre_page < 1 ) { //"이전" 버튼을 비활성화하는 조건
+			pre_page=current_page;
+		}//end if
+		
+		if( total_page<next_page ){ //"다음" 버튼을 비활성화하는 조건
+			next_page=current_page;
+		}//end if
+		
+		pVO=new PageVO(current_page, pre_page, next_page, start_page, end_page, total_page);
+		
+		return pVO;
+	}//calcPage
 	
 	
 

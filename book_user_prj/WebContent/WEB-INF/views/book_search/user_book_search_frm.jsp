@@ -208,19 +208,21 @@
 			   <nav aria-label="Page navigation example">
 			     <ul class="pagination justify-content-center">
 			       <li class="page-item ${paging.pre_page <= 0 ? 'disabled':'active'}">
-			          <a class="page-link"<c:if test="${ paging.pre_page >= 1}"> href="booklist.do?book=${param.book}&type=${param.type}&current_page=${ paging.pre_page }"</c:if> aria-label="Previous">
+			          <a class="page-link"
+			          		<c:if test="${ paging.pre_page >= 1}"> href="book_search_result.do?bookCate=${param.bookCate}&bookCateDetail=${param.bookCateDetail }&price1=${param.price1 }&price2=${param.price2 }&searchType=${param.searchType }&searchkeyword=${param.searchkeyword }current_page=${ paging.pre_page }"
+			          		</c:if> aria-label="Previous">
 			              <span aria-hidden="true">&laquo;</span>
 			            </a>
 			       </li>
 			       <c:forEach begin="${paging.start_page}" end="${paging.end_page}" step="1" var="cur_page" >
 			          <li class="page-item">
-			             <a class="page-link"<c:if test="${paging.current_page ne cur_page}"> href="booklist.do?book=${param.book}&type=${param.type}&current_page=${ cur_page }"</c:if>>
+			             <a class="page-link"<c:if test="${paging.current_page ne cur_page}"> href="book_search_result.do?bookCate=${param.bookCate}&bookCateDetail=${param.bookCateDetail }&price1=${param.price1 }&price2=${param.price2 }&searchType=${param.searchType }&searchkeyword=${param.searchkeyword }&current_page=${ cur_page }"</c:if>>
 			                <c:out value="${cur_page}" />
 			             </a>
 			          </li>
 			       </c:forEach>
 			       <li class="page-item ${paging.next_page > paging.total_page ? 'disabled':'active'}">
-			         <a class="page-link"<c:if test="${paging.next_page <= paging.total_page}"> href="booklist.do?book=${param.book}&type=${param.type}&current_page=${ paging.next_page }"</c:if> aria-label="Next">
+			         <a class="page-link"<c:if test="${paging.next_page <= paging.total_page}"> href="book_search_result.do?bookCate=${param.bookCate}&bookCateDetail=${param.bookCateDetail }&price1=${param.price1 }&price2=${param.price2 }&searchType=${param.searchType }&searchkeyword=${param.searchkeyword }&current_page=${ paging.next_page }"</c:if> aria-label="Next">
 			           <span aria-hidden="true">&raquo;</span>
 			         </a>
 			       </li>

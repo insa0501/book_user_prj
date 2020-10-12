@@ -76,7 +76,6 @@ public class BookController {
 		bcVO.setEnd_num(ps.endNum(current_page));
 
 		BookService bs = new BookService();
-
 		PageVO pVO = ps.calcPaging(current_page, tcVO);
 
 		model.addAttribute("book_list", bs.bookList(bcVO));
@@ -114,34 +113,34 @@ public class BookController {
   		sbVO.setEnd_num(ps.endNum(current_page));
   		
   		if(bookCate != null) {
-  			
   			sbVO.setBookCate(bookCate);
-  	
   		}
   		if(bookCateDetail != null) {
   			sbVO.setBookCateDetail(bookCateDetail);
-  			
   		}
   		if( !"0".equals(price1)) { 
   			sbVO.setBook_price1(Integer.parseInt(price1));
-  			
   		}
   		if( !"0".equals(price2)) {
   			sbVO.setBook_price2(Integer.parseInt(price2));
-  			
   		}
-  			
   		if(searchkeyword != null) {
   			sbVO.setSearchType(searchType);
   			sbVO.setSearchKeyword(searchkeyword);
   		}
   		
-  		BookService bs = new BookService();
-  		
-  		PageVO pVO = ps.calcPaging(current_page, tcVO);
+		BookService bs = new BookService();
+		PageVO pVO = ps.calcPagingSearch(current_page, tcVO);
 
   		model.addAttribute("search_book_result",bs.selectSearchBook(sbVO));
   	 	model.addAttribute("paging", pVO);
+  	 	
+		System.out.println("current Page=====================>" + pVO.getCurrent_page());
+		System.out.println("start Page=====================>" + pVO.getStart_page());
+		System.out.println("end Page=====================>" + pVO.getEnd_page());
+		System.out.println("pre Page=====================>" + pVO.getPre_page());
+		System.out.println("next Page=====================>" + pVO.getNext_page());
+		System.out.println("total Page=====================>" + pVO.getTotal_page());
   	 	
 	     return "book_search/user_book_search_frm"; // result.jsp로 따로 빼지않고 우선 frm으로 다시 보냄
 	   }

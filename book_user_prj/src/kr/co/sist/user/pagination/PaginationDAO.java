@@ -44,6 +44,18 @@ public class PaginationDAO {
 		return cnt;
 	}
 	
+	/**
+	 * 검색에서 사용하는 토탈카운트
+	 * @param tcVO
+	 * @return
+	 */
+	public int selectTotalCntSearch(TotalCntVO tcVO) {
+		int cnt = 0;
+		SqlSession ss = GetMyBatisHandler.getInstance().getSqlSession();
+		cnt = ss.selectOne("selectTotalCntSearch", tcVO);
+		return cnt;
+	}
+	
 	
 
 	
