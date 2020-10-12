@@ -28,8 +28,9 @@
 				<li class="nav_event"><a href="event_main.do">이벤트</a></li>
 			</ul>
 			<div class="nav_user_icons gone">
-				<span><i class="fas fa-sign-in-alt"></i></span> <span><i
-					class="far fa-user"></i></span> <span><i class="fas fa-search"></i></span>
+				<span><a href="order_list.do"><i class="far fa-user"></i></a></span>
+				<span><a href="get_cart_list.do"><i class="fas fa-shopping-cart"></i></a></span>
+				<span><a href="user_book_search_frm.do"><i class="fas fa-search"></i></a></span>
 			</div>
 		</div>
 	</section>
