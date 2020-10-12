@@ -105,9 +105,13 @@ public class BookController {
 	
 	 
   	@RequestMapping(value = "/book_search_result.do", method = GET)
-	  public String bookSearchResult(String bookCate, String bookCateDetail, @RequestParam(defaultValue = "0")String price1, @RequestParam(defaultValue = "0")String price2, String searchType,String searchkeyword, Model model) {//SearchBookVO sbVO를 받으면 price(int 때문에 오류남)
+	  public String bookSearchResult(SearchBookVO sbVO, TotalCntVO tcVO, @RequestParam(defaultValue = "1") int current_page, String bookCate, String bookCateDetail, @RequestParam(defaultValue = "0")String price1, @RequestParam(defaultValue = "0")String price2, String searchType,String searchkeyword, Model model) {//SearchBookVO sbVO를 받으면 price(int 때문에 오류남)
 	  
-  		SearchBookVO sbVO = new SearchBookVO();
+  		PaginationService ps = new PaginationService();
+  		
+  		//SearchBookVO sbVO = new SearchBookVO();
+  		sbVO.setStart_num(ps.startNum(current_page));
+  		sbVO.setEnd_num(ps.endNum(current_page));
   		
   		if(bookCate != null) {
   			
@@ -126,17 +130,19 @@ public class BookController {
   			sbVO.setBook_price2(Integer.parseInt(price2));
   			
   		}
-  		
   			
   		if(searchkeyword != null) {
   			sbVO.setSearchType(searchType);
   			sbVO.setSearchKeyword(searchkeyword);
-  			
   		}
   		
   		BookService bs = new BookService();
-  	 	model.addAttribute("search_book_result",bs.selectSearchBook(sbVO));
   		
+  		PageVO pVO = ps.calcPaging(current_page, tcVO);
+
+  		model.addAttribute("search_book_result",bs.selectSearchBook(sbVO));
+  	 	model.addAttribute("paging", pVO);
+  	 	
 	     return "book_search/user_book_search_frm"; // result.jsp로 따로 빼지않고 우선 frm으로 다시 보냄
 	   }
 	

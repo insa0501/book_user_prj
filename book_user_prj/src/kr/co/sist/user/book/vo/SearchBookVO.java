@@ -8,7 +8,8 @@ package kr.co.sist.user.book.vo;
  */
 public class SearchBookVO {
 	private String bookCate, bookCateDetail, searchType, searchKeyword; 
-	int  book_price1, book_price2;
+	int  book_price1, book_price2, start_num, end_num;
+	
 	public String getBookCate() {
 		return bookCate;
 	}
@@ -45,6 +46,20 @@ public class SearchBookVO {
 	public void setBook_price2(int book_price2) {
 		this.book_price2 = book_price2;
 	}
+	public int getStart_num() {
+		return start_num;
+	}
+	public void setStart_num(int start_num) {
+		this.start_num = start_num;
+	}
+	public int getEnd_num() {
+		return end_num;
+	}
+	public void setEnd_num(int end_num) {
+		this.end_num = end_num;
+	}
+
+	
 	
  
 
