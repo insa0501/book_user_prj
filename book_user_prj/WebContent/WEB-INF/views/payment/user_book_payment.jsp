@@ -44,6 +44,12 @@
     <script src="js/scroll.js"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
+    	if(${ empty sessionScope.id }){
+    		alert("로그인 후에 사용가능합니다.");
+    		location.href="login_form.do";
+    	}
+    </script>
+    <script type="text/javascript">
     
     function pay() {
         var payment_final_chk = document.getElementById("payment_final_chk"); //결재하기 버튼
@@ -146,7 +152,7 @@
       <!-- title wrap -->
 
       <div class="cart_wrap">
-        <form action="order.do" id="pay_frm">
+        <form action="order.do" id="pay_frm" method="post">
           <!-- 결제할 물건들 목록 표 ul-->
           <ul class="cart_list_table">
             <li>

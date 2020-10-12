@@ -18,7 +18,7 @@ import kr.co.sist.user.pagination.TotalCntVO;
 @Controller
 public class BookController {
   
-	@RequestMapping(value = "/book.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/book.do", method = RequestMethod.POST)
 	public String selectBookMain() {
 		
 		return "book/book_main";

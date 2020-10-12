@@ -35,6 +35,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript">
     
+    if(${ param.paymentFlag eq 'true'}){
+    	alert("로그인해주세요");
+    }
+    
     <c:if test="${ not empty sessionScope.id }">
     location.replace("book.do");
     </c:if>
@@ -56,6 +60,8 @@
 				alert("비밀번호를 입력해 주세요.");
 				return;
 			}//end if
+			
+			
 			$("#frm").submit();
 		})//click
 		
@@ -88,6 +94,7 @@
             <div class="login_title">LOGIN</div>
             <div class="login_input">
                 <form action="login_process.do" id="frm" method="POST">
+
                     <input type="text" class="input_id" name="user_id" id="user_id" value="${ user_id }">
                     <input type="button" class="login_btn" value="로그인" id="login_btn">
                     <input type="password" class="input_pass" name="user_pass" id="user_pass">
