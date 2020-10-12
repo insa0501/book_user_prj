@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.sist.qna.select">
-  <select id="qna_select" resultType="kr.co.sist.user.qna.domain.QnaDomain" parameterType="kr.co.sist.user.qna.vo.SelectQnaVO">
-	 	select qna_no, qna_type,  qna_subject, qna_content, qna_answer
-	 	from  QNA
-        where user_id = '${id}'  
-	 	order by qna_no  
-	  
-  </select>
+	<select id="qna_select"
+		resultType="kr.co.sist.user.qna.domain.QnaDomain"
+		parameterType="kr.co.sist.user.qna.vo.SelectQnaVO">
+		select qna_no, qna_type, qna_subject, qna_content, qna_answer
+		from(
+		select qna_no, qna_type, qna_subject, qna_content, qna_answer, rownum rnum
+		from QNA
+		order by qna_no
+		)
+		where rnum between #{start_num} and #{end_num}
+
+		<!-- where user_id = 'user1' --> <!-- qna_no은 나중에 결과 필요할떄 사용됨? -->
+		<!-- where ${qna_no} = #{qna_no} and ${user_id} = #{user_id} -->
+	</select>
 </mapper>  
  
 

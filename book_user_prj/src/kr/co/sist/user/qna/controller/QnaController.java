@@ -3,7 +3,11 @@ package kr.co.sist.user.qna.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.sist.user.pagination.PageVO;
+import kr.co.sist.user.pagination.PaginationService;
+import kr.co.sist.user.pagination.TotalCntVO;
 import kr.co.sist.user.qna.service.QnaService;
 import kr.co.sist.user.qna.vo.QnaAddVO;
 import kr.co.sist.user.qna.vo.SelectQnaVO;
@@ -36,14 +40,29 @@ public class QnaController {
 	 * @return
 	 */
 	@RequestMapping(value="/qna_list.do", method=GET)
-	public String qnaListPage(HttpSession session, Model model, SelectQnaVO sqVO) {
+	public String qnaListPage(HttpSession session, Model model, SelectQnaVO sqVO, TotalCntVO tcVO, @RequestParam(defaultValue = "1") int current_page) {
+		
+		PaginationService ps = new PaginationService(); //페이지네이션
 		
 		sqVO.setId( (String)session.getAttribute("id"));//session에서 user_id 얻기
+		sqVO.setStart_num(ps.startNum(current_page));
+		sqVO.setEnd_num(ps.endNum(current_page));
+		
+		PageVO pVO = ps.calcPagingQna(current_page, tcVO);
 		
 		QnaService qs = new QnaService();
 		qs.searchQnaList(sqVO);
 		
-		model.addAttribute("qna_select", qs.searchQnaList(sqVO));
+		model.addAttribute("qna_select", qs.searchQnaList(sqVO)); //qna목록
+		model.addAttribute("paging", pVO); //페이지네이션
+		
+		System.out.println("current Page=====================>" + pVO.getCurrent_page());
+		System.out.println("start Page=====================>" + pVO.getStart_page());
+		System.out.println("end Page=====================>" + pVO.getEnd_page());
+		System.out.println("pre Page=====================>" + pVO.getPre_page());
+		System.out.println("next Page=====================>" + pVO.getNext_page());
+		System.out.println("total Page=====================>" + pVO.getTotal_page());
+
 		
 		return "customer_service/mypage_myQuestion";
 	} // qnaListPage()

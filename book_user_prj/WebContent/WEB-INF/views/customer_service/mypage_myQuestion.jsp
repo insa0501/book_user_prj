@@ -87,69 +87,32 @@
                     </span>
                 </div>
                </c:forEach>
-                
-	           
-                
-               
-                <div class="ques_content hidden" id="q_01_con">
-			                    내가쓴질문내용인데요
-			                    내가쓴질문내용인데요
-			                    내가쓴질문내용인데요
-			                    내가쓴질문내용인데요
-			                    내가쓴질문내용인데요
-			                    내가쓴질문내용인데요
-			                    내가쓴질문내용인데요
-                </div>
-                <div class="ans hidden" id="q_01_a">
-                    <span><i class="fas fa-arrow-right"></i></span>
-                    <span>
-			                        답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변
-			                        답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변
-                    </span>
-                </div>   
-
-                <div class="ques" id="q_02">
-                    <span>2</span>
-                    <span>배송</span>
-                    <span>내가쓴 질문 제목22 제목22  </span>
-                </div>
-                <div class="ques_content hidden" id="q_02_con">
-			                    내가쓴질문내용인데요
-			                    내가쓴질문내용인데요
-			                    내가쓴질문내용인데요
-			                    내가쓴질문내용인데요
-			                    내가쓴질문내용인데요
-			                    내가쓴질문내용인데요
-			                    내가쓴질문내용인데요
-                </div>
-                <div class="ans hidden"  id="q_02_a">
-                    <span><i class="fas fa-arrow-right"></i></span>
-                    <span>
-                        답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변
-                        답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변답변
-                    </span>
-                </div>
-                <div class="ques" id="q_03">
-                    <span>3</span>
-                    <span>배송</span>
-                    <span>주문완료 후 배송지 변경 가능합니까?</span>
-                </div>
-                <div class="ques_content hidden" id="q_03_con">
-                    내가쓴질문내용인데요
-                    내가쓴질문내용인데요
-                    내가쓴질문내용인데요
-                    내가쓴질문내용인데요
-                    내가쓴질문내용인데요
-                    내가쓴질문내용인데요
-                    내가쓴질문내용인데요
-                </div>
-                <div class="ans hidden" id="q_03_a">
-                    <span><i class="fas fa-arrow-right"></i></span>
-                    <span>
-                        관리자가 확인중입니다. 조금만 더 기다려주시길 바랍니다. (디비에 답변이 등록되지 않은 경우)
-                    </span>
-                </div>    
             </div> <!-- faq wrap -->
+            
+            
+            <div id="pagination">
+			   <nav aria-label="Page navigation example">
+			     <ul class="pagination justify-content-center">
+			       <li class="page-item ${paging.pre_page <= 0 ? 'disabled':'active'}">
+			          <a class="page-link"<c:if test="${ paging.pre_page >= 1}"> href="qna_list.do&current_page=${ paging.pre_page }"</c:if> aria-label="Previous">
+			              <span aria-hidden="true">&laquo;</span>
+			            </a>
+			       </li>
+			       <c:forEach begin="${paging.start_page}" end="${paging.end_page}" step="1" var="cur_page" >
+			          <li class="page-item">
+			             <a class="page-link"<c:if test="${paging.current_page ne cur_page}"> href="qna_list.do?current_page=${ cur_page }"</c:if>>
+			                <c:out value="${cur_page}" />
+			             </a>
+			          </li>
+			       </c:forEach>
+			       <li class="page-item ${paging.next_page > paging.total_page ? 'disabled':'active'}">
+			         <a class="page-link"<c:if test="${paging.next_page <= paging.total_page}"> href="qna_list.do?current_page=${ paging.next_page }"</c:if> aria-label="Next">
+			           <span aria-hidden="true">&raquo;</span>
+			         </a>
+			       </li>
+			     </ul>
+			   </nav>
+			</div>
             
            <form action="qna_add_form.do"> 
 	            <div class="btn_wrap">
