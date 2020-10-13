@@ -25,7 +25,7 @@
 		</c:forEach>
 	</div>
 	
-	<div id="pagination">
+	<div id="pagination" class="section_pagination">
 	   <nav aria-label="Page navigation example">
 	     <ul class="pagination justify-content-center">
 	       <li class="page-item ${paging.pre_page <= 0 ? 'disabled':'active'}">

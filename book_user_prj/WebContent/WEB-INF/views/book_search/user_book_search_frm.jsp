@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common_header_footer.css">
     <link rel="stylesheet" href="css/user_search.css">
+    <link rel="stylesheet"	href="css/pagination.css">
 
     <!-- JS -->
     <!-- header nav용 js (scroll.js) -->
@@ -191,7 +192,7 @@
 	              </c:forEach> 
 	        </div>
 	        
-        	<div id="pagination">
+			<div id="pagination" class="section_pagination">
 			   <nav aria-label="Page navigation example">
 			     <ul class="pagination justify-content-center">
 			       <li class="page-item ${paging.pre_page <= 0 ? 'disabled':'active'}">

@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common_header_footer.css">
     <link rel="stylesheet" href="css/my_page_myQuestion.css">
+	<link rel="stylesheet"	href="css/pagination.css">
 
 
       <!-- JS -->
@@ -90,7 +91,7 @@
             </div> <!-- faq wrap -->
             
             
-            <div id="pagination">
+			<div id="pagination" class="section_pagination">
 			   <nav aria-label="Page navigation example">
 			     <ul class="pagination justify-content-center">
 			       <li class="page-item ${paging.pre_page <= 0 ? 'disabled':'active'}">
