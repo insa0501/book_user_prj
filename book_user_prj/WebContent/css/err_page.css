@@ -1,0 +1,24 @@
+    * {
+       box-sizing: border-box;
+    }
+
+    .section_main{
+        width: 90vw;
+        height: 700px;
+        margin: 0 auto;
+        padding-top: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .errEmoji{
+        font-size: 65px;
+    }
+
+    .errMsg{
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
