@@ -135,11 +135,9 @@
             </select>
             <div class="option_title">가격</div>
             <div class="input_price_wrap">
-          
                 <input class="input_book_price"  id="bookPrice1" name="bookPrice1"  type="text" value="${param.price1}" >~<br>
                 <input class="input_book_price" id="bookPrice2" name="bookPrice2" type="text" value="${param.price2}"  >원
                 <input type="button" class="search_btn" name="search_btn1" id="search_btn1" onclick="formData('price')"  value="가격 검색" >
-            
             </div>
         </form>
     </div>
@@ -181,13 +179,13 @@
 	        <div class="content_wrap_books">
 	              <c:forEach  var="bd" items="${search_book_result}"> 
 			            <div class="content_book">
-			                    <div class="book_list">
+		                    <div class="book_list">
 			                     <div class="book_img"> <img class="book_img" src="<c:out value="${bd.book_img}"/>"> </div> 
 			                     <div class="book_discription">
 			                       <div class="book_title"><a href="book_detail.do?book_isbn=${bd.book_isbn}">  <c:out value='${bd.book_name}'/> </a>  </div>
 			                       <div class="book_price"><c:out value="${bd.book_price}"/>원</div>  
 			                     </div>
-			                    </div>
+		                    </div>
 			            </div>
 	              </c:forEach> 
 	        </div>

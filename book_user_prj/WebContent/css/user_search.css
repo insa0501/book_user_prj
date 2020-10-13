@@ -104,6 +104,19 @@
 	height: 40px
 }
 
+.input_price_wrap .search_btn {
+    width: 100%;
+    height: 40px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.input_price_wrap .search_btn:hover {
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+}
+
 .search_show_keyword {
 	width: 100%;
 	display: flex;
@@ -130,6 +143,12 @@
 
 .content_wrap_books .content_book:hover {
 	background-color: #e9e9e9
+}
+
+.book_list, .book_discription {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .content_wrap_books .book_title {

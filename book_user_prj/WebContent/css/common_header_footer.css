@@ -14,6 +14,15 @@
 	font-size: 4.5em
 }
 
+.nav_big_logo a, 
+.nav_logo a {
+	color: black;
+}
+
+.header_nav i {
+	color: black;
+}
+
 .topper_nav {
 	width: 100vw;
 	height: 170px;
