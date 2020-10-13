@@ -31,7 +31,7 @@
 
     <!-- JS -->
     <!-- header nav용 js (scroll.js) -->
-	<script src="http://localhost/book_user_prj/js/scroll.js"></script>
+	<script src="js/scroll.js"></script>
 </head>
 
 <body>
@@ -44,6 +44,19 @@
     <!-- main section -->
     <section class="section_main">
     	<c:choose>
+    		<c:when test="${ param.event eq 3 }">
+		        <div class="event_titles">
+		            <div class="title">SNS 인증 이벤트</div>
+		            <div class="others">
+		                <span class="event_date">2020.10.01~2020.12.31</span>
+		            </div>
+		        </div>
+		        <div class="event_content_wrap">
+		            <img src="evtImages/event_detail_3.png">
+		        </div>
+    		</c:when>
+    	
+    	
     		<c:when test="${ param.event eq 2 }">
 		        <div class="event_titles">
 		            <div class="title">구매 사은품 증정</div>
@@ -52,7 +65,7 @@
 		            </div>
 		        </div>
 		        <div class="event_content_wrap">
-		            <img src="http://localhost/book_user_prj/images/event_detail_2.png">
+		            <img src="evtImages/event_detail_2.png">
 		        </div>
     		</c:when>
     		
@@ -64,7 +77,7 @@
 		            </div>
 		        </div>
 		        <div class="event_content_wrap">
-		            <img src="http://localhost/book_user_prj/images/event_detail_1.png">
+		            <img src="evtImages/event_detail_1.png">
 		        </div>
     		</c:when>
     	</c:choose>

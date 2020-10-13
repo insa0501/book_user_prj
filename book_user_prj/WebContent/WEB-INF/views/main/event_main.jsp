@@ -33,7 +33,7 @@
 
   <!-- JS -->
   <!-- header nav용 js (scroll.js) -->
-<script src="http://localhost/book_user_prj/js/scroll.js"></script>
+<script src="js/scroll.js"></script>
 </head>
 
 <body>
@@ -47,14 +47,21 @@
     <div class="event_wrap">
         <ul>
             <li class="event">
-                <img src="http://localhost/book_user_prj/images/event_title_2.png">
+                <img src="evtImages/event_title_3.png">
                 <div class="event_description">
-                    <span class="event_title"><a href="event_detail.do?event=2">구매 사은품 증정</a></span>
-                    <span class="event_date">2020.10.01~2021.10.01</span>
+                    <span class="event_title"><a href="event_detail.do?event=3">SNS 인증 이벤트</a></span>
+                    <span class="event_date">2020.10.01~2020.12.31</span>
                 </div>
             </li>
             <li class="event">
-                <img src="http://localhost/book_user_prj/images/event_title_1.png">
+                <img src="evtImages/event_title_2.png">
+                <div class="event_description">
+                    <span class="event_title"><a href="event_detail.do?event=2">구매 사은품 증정</a></span>
+                    <span class="event_date">2020.10.01~2020.12.31</span>
+                </div>
+            </li>
+            <li class="event">
+                <img src="evtImages/event_title_1.png">
                 <div class="event_description">
                     <span class="event_title"><a href="event_detail.do?event=1">오픈 기념 무료배송</a></span>
                     <span class="event_date">2020.10.01~2021.10.01</span>
