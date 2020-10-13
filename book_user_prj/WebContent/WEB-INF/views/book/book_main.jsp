@@ -119,7 +119,7 @@
 		<!-- 배너 -->
 		<div class="wrap_banner">
 			<img class="banner-img"
-				src="https://www.mmcashop.co.kr/data/skin/front/designwib/img/banner/b30296baa6c9dce302878bf47e481872_27468.png">
+				src="evtImages/main_banner_img2.png">
 		</div>
 
 
