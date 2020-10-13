@@ -1,5 +1,7 @@
 package kr.co.sist.user.order.dao;
 
+import java.sql.SQLException;
+
 import org.apache.ibatis.session.SqlSession;
 
 import kr.co.sist.user.GetMyBatisHandler;
@@ -31,7 +33,7 @@ public class OrderDAO {
 	   
    }//SelectOrderUserInfo
 	
-   public int InsertOrder(OrderVO orVO){
+   public int InsertOrder(OrderVO orVO) throws SQLException{
 	   int insertResult = 0;
 	   
 	   SqlSession ss = GetMyBatisHandler.getInstance().getSqlSession();
@@ -58,9 +60,8 @@ public class OrderDAO {
 	   }
 	   insertResult = flag?insertResult+1:insertResult;
 	   
-	   insertResult += ss.insert("insertPayment", orVO);
-	   
-	   if( insertResult == 3) {
+	   if(insertResult == 2) {
+		   insertResult = ss.insert("insertPayment", orVO);		   
 		   ss.commit();	   
 	   }
 	   

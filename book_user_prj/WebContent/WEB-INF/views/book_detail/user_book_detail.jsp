@@ -65,6 +65,7 @@
 		//총합
 		paymentBookFrm.hidden_total_price.value = paymentBookFrm.hidden_sub_total.value*1 + paymentBookFrm.hidden_shipping.value*1;
 		
+		 $("#cartFlag").val("pay");
 		
 		paymentBookFrm.submit();
 	}
@@ -96,6 +97,7 @@
  <!-- 책 제목, 금액, 갯수를 form으로 넘김 -->
      <form action="payment.do" name="paymentBookFrm" id="paymentBookFrm">
       <!-- form으로 값 넘겨주기 위한 hidden -->
+      <input type="hidden" id="cartFlag" name="cartFlag"/>
       <input type="hidden" value="${book_detail.book_name}" name="hidden_book_title">
       <input type="hidden" value="${book_detail.book_price}" name="hidden_book_price" id="hidden_book_price">
       <input type="hidden" value="${book_detail.book_isbn}" name="hidden_book_isbn">

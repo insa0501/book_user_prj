@@ -73,6 +73,7 @@
           card_no4.value.length !== 4
         ) {
           alert("카드번호를 확인해주세요");
+          return;
         }
 
         //필수 항목 체크됐는지 확인

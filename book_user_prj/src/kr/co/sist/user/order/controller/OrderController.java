@@ -1,14 +1,18 @@
 package kr.co.sist.user.order.controller;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import kr.co.sist.user.order.service.CartService;
 import kr.co.sist.user.order.service.OrderService;
 import kr.co.sist.user.order.vo.OrderVO;
 
@@ -42,11 +46,9 @@ public class OrderController {
 	}
 	
 	@PostMapping(value = "/order_done.do")
-	public String orderDone(HttpServletRequest request, OrderVO orVO, Model model) {
+	public String orderDone(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("id");
-		//나중에 아이디를 받아서 결제정보 테이블에 들어갈 수 있게 해주어야함
-		
 		
 		OrderService os = new OrderService();
 		model.addAttribute("order_no",os.searchOrderNo(user_id));
@@ -55,7 +57,7 @@ public class OrderController {
 	}
 	
 	@PostMapping(value = "/order.do")
-	public String orderProcess(HttpServletRequest request, OrderVO orVO, Model model) {
+	public String orderProcess(HttpServletRequest request, OrderVO orVO, Model model,String cartFlag) {
 		//String user_id = request.getParameter("id");
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("id");
@@ -64,15 +66,20 @@ public class OrderController {
 		orVO.setUser_id(user_id);
 		orVO.setUser_ip(user_ip);
 		
-		// orderProcess 메소드에서 orderDone 메소드로 변수를 전달하려면 어떻게 해야되지...
-		OrderService os = new OrderService();
-		String order_flag = "false";
-		if(os.addOrder(orVO)) {
-			order_flag = "true";
-		}
-		model.addAttribute("order_flag",order_flag);
+		String url = null;
 		
-		return "forward:order_done.do";
+		try {
+			OrderService os = new OrderService();
+			os.addOrder(orVO,session,cartFlag);
+			// 결재에 성공했을 경우 장바구니에서 물건 삭제
+			url = "forward:order_done.do";
+		} catch (SQLException e) {
+			url = "err/errPage";
+			e.printStackTrace();
+		}
+		
+		return url;
 	}
+
 	
 }
