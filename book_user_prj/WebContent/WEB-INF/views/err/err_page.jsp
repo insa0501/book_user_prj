@@ -40,7 +40,7 @@
 <!-- css -->
 <link rel="stylesheet"	href="css/reset.css">
 <link rel="stylesheet"	href="css/common_header_footer.css">
-<link rel="stylesheet"	href="css/main.css">
+<link rel="stylesheet"	href="css/err_page.css">
 
 <!-- js -->
 <script src="js/scroll.js"></script>
