@@ -13,7 +13,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.sist.user.mypage.domain.OrderDetailDomain;
 import kr.co.sist.user.mypage.domain.OrderListDomain;
@@ -152,6 +154,7 @@ public class MypageController {
 	 */
 	@RequestMapping(value="/user_pass_check_process.do", method=POST)
 	public String userPassCheck(HttpSession session, String user_pass, Model model) {
+		String path = "customer_service/my_page_user_info_chk";
 		
 		MypageService ms = new MypageService();
 		
@@ -161,10 +164,16 @@ public class MypageController {
 		
 		UserInfoDomain uid = ms.checkUserPass(ucVO);
 		
-		model.addAttribute("user_info", uid);
-		model.addAttribute("user_pass", user_pass);
+		if(uid != null) {
+			path = "customer_service/my_page_user_info_change";
+			model.addAttribute("user_info", uid);
+			model.addAttribute("user_pass", user_pass);
+		} else {
+			model.addAttribute("chk_flag", true);
+		}//end else
 		
-		return "customer_service/my_page_user_info_change";
+		
+		return path;
 	} // userPassCheck
 	
 	/**
@@ -229,6 +238,5 @@ public class MypageController {
 		
 		return path;
 	} // userResignForm
-	
 	
 } // class

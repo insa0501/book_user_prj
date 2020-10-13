@@ -35,6 +35,10 @@
 	
 	$(function() {
 		
+		<c:if test="${ chk_flag }">
+		alert("비밀번호를 확인해주세요.");
+		</c:if>
+		
 		<c:if test="${ update_flag }">
 		alert("수정되었습니다.");
 		</c:if>

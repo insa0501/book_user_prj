@@ -119,7 +119,7 @@
                 </c:forEach>
                 </c:if>
             </table>
-        <div style="margin: 0px auto;">
+        <div align="center">
         ${ page_nation }
         </div>
         </div>

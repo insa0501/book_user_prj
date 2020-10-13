@@ -141,6 +141,13 @@ public class MypageDAO {
 		return uid;
 	} // selectUserPass
 	
+	public static void main(String[] args) {
+		UserCheckVO ucVO = new UserCheckVO();
+		ucVO.setUser_id("test1");
+		ucVO.setUser_pass("1");
+		System.out.println(MypageDAO.getInstance().selectUserPass(ucVO));
+	}
+	
 	/**
 	 * 개인정보 변경
 	 * @param uiVO
@@ -157,6 +164,11 @@ public class MypageDAO {
 		return cnt;
 	} // updateUserInfo
 	
+	/**
+	 * 탈퇴 비번 검증
+	 * @param urVO
+	 * @return
+	 */
 	public String selectResignId(UserResignVO urVO) {
 		String chk_id = "";
 		
