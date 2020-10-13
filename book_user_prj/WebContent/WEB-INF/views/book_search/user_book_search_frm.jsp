@@ -79,26 +79,13 @@
              }
           
                           
-            // alert("price1:  "+hiddenFrm.price1.value);
-            // alert("price2:  "+hiddenFrm.price2.value);
-         // }
-          
-          //저자, 제목, 출판사
-          //if(flag == 'searchType'){
+     
              hiddenFrm.searchType.value = document.getElementById("selectSearchType").value;
-            /*  if(hiddenFrm.searchType.value == "none"){
-            	 hiddenFrm.searchType.value="";
-             } */
-            // alert("searchType:  "+hiddenFrm.searchType.value);
-          //}  
-          //검색키워드
-         // if(flag == 'searchkeyword'){
+           
              
              hiddenFrm.searchkeyword.value = document.getElementById("searchkeyword").value;
-           ///  alert("searchkeyword:  "+hiddenFrm.searchkeyword.value);
            
            
-         // }
           alert(hiddenFrm.bookCate.value+" / " +hiddenFrm.bookCateDetail.value+" / " +hiddenFrm.price1.value+" / " +hiddenFrm.price2.value+" / " +
         	" / " +  hiddenFrm.searchType.value+" / " +  hiddenFrm.searchkeyword.value  );
           hiddenFrm.submit();  
@@ -194,7 +181,7 @@
 	              <c:forEach  var="bd" items="${search_book_result}"> 
 			            <div class="content_book">
 			                    <div class="book_list">
-			                     <div class="book_img"> <img class="book_img" src="images/<c:out value="${bd.book_img}"/>"> </div> 
+			                     <div class="book_img"> <img class="book_img" src="<c:out value="${bd.book_img}"/>"> </div> 
 			                     <div class="book_discription">
 			                       <div class="book_title"><a href="book_detail.do?book_isbn=${bd.book_isbn}">  <c:out value='${bd.book_name}'/> </a>  </div>
 			                       <div class="book_price"><c:out value="${bd.book_price}"/>원</div>  
