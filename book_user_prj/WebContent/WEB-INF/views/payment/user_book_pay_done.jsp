@@ -88,12 +88,6 @@
 	              <span class="book_price2"><c:out value="${ paramValues.book_price2[status.index] }"/> 원</span>
 	            </li>
             </c:forEach>
-<!--             <li>
-              <span class="book_title">책책췍</span>
-              <span class="book_price">15,000 원</span>
-              <span>2</span>
-              <span class="book_price2">30,000 원</span>
-            </li> -->
           </ul>
 
           <!-- 현재금액+배송비=총금액 -->
@@ -177,25 +171,16 @@
           </div>
           <!-- address_pay_wrap end -->
           <div class="chk_wrap">
-            <input type="button" class="btn_pay_submit" value="확인" />
+            <input type="button" class="btn_pay_submit" value="확인" onclick="javascrpt:location.href('book.do')" />
           </div>
         </form>
       </div>
     </section>
     <!-- main end -->
 
-    <!-- footer -->
-    <section class="footer">
-      <div class="footer_text">
-        @copyright 2조 <br />
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.<br />
-        Necessitatibus tenetur temporibus, enim nostrum soluta deleniti? <br />
-        Veritatis maiores consequuntur magni
-      </div>
+	<!-- footer -->
+	<c:import url="../common/common_footer.jsp" />
+	<!-- footer end -->
 
-      <div class="go_to_top">
-        <a href=".section_header"><i class="fas fa-angle-up"></i></a>
-      </div>
-    </section>
   </body>
 </html>

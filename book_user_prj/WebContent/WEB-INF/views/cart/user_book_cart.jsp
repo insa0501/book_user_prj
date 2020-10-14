@@ -269,68 +269,13 @@
               <input type="hidden" name="hidden_sub_total" />
             </li>
          </c:forEach>
-<!--              <li name="cart_book">
-              <span
-                ><input
-                  type="checkbox"
-                  id="chkbox1"
-                  checked="checked"
-                  class="book_chk"
-                  name="book_chk"
-                  onchange="cal_price()"
-              /></span>
-              <span class="book_title">책책췍</span>
-              <span class="book_price"
-                ><span name="book_price">15000</span> 원</span
-              >
-              <span
-                ><input
-                  type="number"
-                  class="book_cnt"
-                  name="book_cnt"
-                  value="1"
-                  onchange="cal_price()"
-              /></span>
-              <span class="book_price2"><span name="sub_total"></span> 원</span>
-              <input type="hidden" name="hidden_book_title" />
-              <input type="hidden" name="hidden_book_price" />
-              <input type="hidden" name="hidden_book_cnt" />
-              <input type="hidden" name="hidden_sub_total" />
-            </li>
-             <li name="cart_book">
-              <span
-                ><input
-                  type="checkbox"
-                  id="chkbox1"
-                  checked="checked"
-                  class="book_chk"
-                  name="book_chk"
-                  onchange="cal_price()"
-              /></span>
-              <span class="book_title">책책췍</span>
-              <span class="book_price"
-                ><span name="book_price">15000</span> 원</span
-              >
-              <span
-                ><input
-                  type="number"
-                  class="book_cnt"
-                  name="book_cnt"
-                  value="1"
-                  onchange="cal_price()"
-              /></span>
-              <span class="book_price2"><span name="sub_total"></span> 원</span>
-              <input type="hidden" name="hidden_book_title" />
-              <input type="hidden" name="hidden_book_price" />
-              <input type="hidden" name="hidden_book_cnt" />
-              <input type="hidden" name="hidden_sub_total" />
-            </li>-->
+
           </ul>
           <!-- 현재금액+배송비=총금액 -->
           <div class="cart_total_wrap">
             <div>
               <span>합계</span
-              ><span><span id="total_book_price">00,000</span> 원</span>
+              ><span><span id="total_book_price">0</span> 원</span>
             </div>
             <div><i class="fas fa-plus"></i></div>
             <div>
@@ -373,28 +318,11 @@
           </div>
         </form>
         </div>
-
-
-
-
     </section> <!-- main end -->
 
-    <!-- footer -->
-    <section class="footer">
-        <div class="footer_text">
-            @copyright 2조 <br>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>
-            Necessitatibus tenetur temporibus, enim nostrum soluta deleniti? <br>
-            Veritatis maiores consequuntur magni
-
-        </div>
-
-        <div class="go_to_top">
-            <a href=".section_header"><i class="fas fa-angle-up"></i></a>
-        </div>
-    </section>
-
+	<!-- footer -->
+	<c:import url="../common/common_footer.jsp" />
+	<!-- footer end -->
 
 </body>
-
 </html>

@@ -59,12 +59,14 @@
         var card_no2 = document.getElementById("card_no2");
         var card_no3 = document.getElementById("card_no3");
         var card_no4 = document.getElementById("card_no4");
+        
+        var month = document.getElementById("card_exp_date1");
+        var year = document.getElementById("card_exp_date2");
 
         document.getElementById("order_name").value = document.getElementById(
           "user_name"
         ).value;
 
-        console.log(card_no1);
         //카드번호를 4자리 제대로 입력했는지 확인
         if (
           card_no1.value.length !== 4 ||
@@ -75,14 +77,24 @@
           alert("카드번호를 확인해주세요");
           return;
         }
-
+        
+        //유효기간 확인
+        var date = new Date();
+        var currentYear = date.getFullYear() - 2000;
+        var currentMonth = date.getMonth()+1;
+        
+        if(currentYear == year.options[year.selectedIndex].value && currentMonth > month.options[month.selectedIndex].value){
+       		alert("카드 유효기간을 확인해주세요");
+       		return;
+        }
+        
+		
         //필수 항목 체크됐는지 확인
         if (!payment_final_chk.checked) {
           alert("필수항목을 체크해주세요");
           return;
         }
-
-        console.log("넘어감");
+		
         pay_frm.submit();
       }
     
@@ -185,12 +197,6 @@
 	            </li>
             </c:if>
             </c:forEach>
-            <!-- <li>
-              <span class="book_title">책책췍</span>
-              <span class="book_price">15,000 원</span>
-              <span><input type="number" class="book_cnt" value="1" /></span>
-              <span class="book_price2">15,000 원</span>
-            </li> -->
           </ul>
 
           <!-- 현재금액+배송비=총금액 -->
@@ -327,7 +333,7 @@
               <li>
                 <span>유효기간</span>
                 <span>
-                  <select class="input_text" name="card_exp_date1">
+                  <select class="input_text" name="card_exp_date1" id="card_exp_date1">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -349,13 +355,6 @@
                     <option>24</option>
                     <option>25</option>
                     <option>26</option>
-<!--                     <option>2020</option>
-                    <option>2021</option>
-                    <option>2022</option>
-                    <option>2023</option>
-                    <option>2024</option>
-                    <option>2025</option>
-                    <option>2026</option> -->
                   </select>
                 </span>
               </li>
@@ -365,10 +364,9 @@
           <div class="chk_wrap">
             <div>
               <input type="checkbox" id="payment_final_chk" />
-              <label for="payment_final_chk"
-                >(필수)구매하실 상품의 결제정보를 확인하였으며, 구매진행에
-                동의합니다.</label
-              >
+              <label for="payment_final_chk">
+              	(필수)구매하실 상품의 결제정보를 확인하였으며, 구매진행에 동의합니다.
+              </label>
             </div>
             <input type="button" class="btn_pay_submit" value="결제하기" onclick="pay()" />
           </div>
@@ -377,18 +375,8 @@
     </section>
     <!-- main end -->
 
-    <!-- footer -->
-    <section class="footer">
-      <div class="footer_text">
-        @copyright 2조 <br />
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.<br />
-        Necessitatibus tenetur temporibus, enim nostrum soluta deleniti? <br />
-        Veritatis maiores consequuntur magni
-      </div>
-
-      <div class="go_to_top">
-        <a href=".section_header"><i class="fas fa-angle-up"></i></a>
-      </div>
-    </section>
+	<!-- footer -->
+	<c:import url="../common/common_footer.jsp" />
+	<!-- footer end -->
   </body>
 </html>
