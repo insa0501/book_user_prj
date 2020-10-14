@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common_header_footer.css">
     <link rel="stylesheet" href="css/my_page_order_list.css">
-
+    <link rel="stylesheet"	href="css/pagination.css">
 
     <!-- JS -->
     <script src="js/scroll.js"></script>
@@ -119,9 +119,29 @@
                 </c:forEach>
                 </c:if>
             </table>
-        <div align="center">
-        ${ page_nation }
-        </div>
+			<div id="pagination">
+			   <nav aria-label="Page navigation example">
+			     <ul class="pagination justify-content-center">
+			       <li class="page-item ${paging.pre_page <= 0 ? 'disabled':'active'}">
+			          <a class="page-link"<c:if test="${ paging.pre_page >= 1}"> href="order_list.do?term=${ param.term }&currentPage=${ paging.pre_page }"</c:if> aria-label="Previous">
+			              <span aria-hidden="true">&laquo;</span>
+			            </a>
+			       </li>
+			       <c:forEach begin="${paging.start_page}" end="${paging.end_page}" step="1" var="cur_page" >
+			          <li class="page-item">
+			             <a class="page-link"<c:if test="${paging.current_page ne cur_page}"> href="order_list.do?term=${ param.term }&currentPage=${ cur_page }"</c:if>>
+			                <c:out value="${cur_page}" />
+			             </a>
+			          </li>
+			       </c:forEach>
+			       <li class="page-item ${paging.next_page > paging.total_page ? 'disabled':'active'}">
+			         <a class="page-link"<c:if test="${paging.next_page <= paging.total_page}"> href="order_list.do?term=${ param.term }&currentPage=${ paging.next_page }"</c:if> aria-label="Next">
+			           <span aria-hidden="true">&raquo;</span>
+			         </a>
+			       </li>
+			     </ul>
+			   </nav>
+			</div>
         </div>
     </section> <!-- main end -->
 

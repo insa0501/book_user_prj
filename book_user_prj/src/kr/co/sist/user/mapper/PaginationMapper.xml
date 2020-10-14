@@ -71,4 +71,14 @@
 		</where>
 	</select>
 
+	<!-- 주문 정보 총 개수 조회 -->
+	<select id="selectTotalCntOrder" resultType="int" parameterType="kr.co.sist.user.pagination.TotalCntVO">
+		select count(*)
+		from order_list
+		where user_id = #{user_id}
+		<if test="startDay != null">
+		and order_date between #{startDay} and #{endDay}
+		</if>
+	</select>
+
 </mapper>

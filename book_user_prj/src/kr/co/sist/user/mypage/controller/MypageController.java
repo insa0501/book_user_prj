@@ -13,9 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.sist.user.mypage.domain.OrderDetailDomain;
 import kr.co.sist.user.mypage.domain.OrderListDomain;
@@ -26,6 +24,9 @@ import kr.co.sist.user.mypage.vo.SelectOrderListVO;
 import kr.co.sist.user.mypage.vo.UserCheckVO;
 import kr.co.sist.user.mypage.vo.UserInfoVO;
 import kr.co.sist.user.mypage.vo.UserResignVO;
+import kr.co.sist.user.pagination.PageVO;
+import kr.co.sist.user.pagination.PaginationService;
+import kr.co.sist.user.pagination.TotalCntVO;
 
 @Controller
 public class MypageController {
@@ -40,13 +41,14 @@ public class MypageController {
 	 * @return
 	 */
 	@RequestMapping(value="/order_list.do", method=GET)
-	public String orderListPage(HttpSession session, String term, SelectOrderListVO solVO, Model model) {
+	public String orderListPage(HttpSession session, String term, TotalCntVO tcVO, SelectOrderListVO solVO, Model model) {
 		String path = "forward:login_form.do";
 		
 		if(session.getAttribute("id") != null) {
 			path = "customer_service/my_page_order_list";
 			
 			solVO.setUser_id((String)session.getAttribute("id"));
+			tcVO.setUser_id((String)session.getAttribute("id"));
 			
 			if(term != null) {
 				Date date = new Date();
@@ -56,22 +58,28 @@ public class MypageController {
 				case TODAY: 
 					cal.setTime(date);
 					solVO.setStartDay(sdf.format(cal.getTime()));
+					tcVO.setStartDay(sdf.format(cal.getTime()));
 					cal.add(cal.DATE, 1);
 					solVO.setEndDay(sdf.format(cal.getTime()));
+					tcVO.setEndDay(sdf.format(cal.getTime()));
 					break;
 				case ONE_MONTH:
 					cal.setTime(date);
 					cal.add(cal.DATE, 1);
 					solVO.setEndDay(sdf.format(cal.getTime()));
+					tcVO.setEndDay(sdf.format(cal.getTime()));
 					cal.add(cal.MONTH, -1);
 					solVO.setStartDay(sdf.format(cal.getTime()));
+					tcVO.setStartDay(sdf.format(cal.getTime()));
 					break;
 				case THREE_MONTH:
 					cal.setTime(date);
 					cal.add(cal.DATE, 1);
 					solVO.setEndDay(sdf.format(cal.getTime()));
+					tcVO.setEndDay(sdf.format(cal.getTime()));
 					cal.add(cal.MONTH, -3);
 					solVO.setStartDay(sdf.format(cal.getTime()));
+					tcVO.setStartDay(sdf.format(cal.getTime()));
 					break;
 				}//end switch
 			}//end if
@@ -81,23 +89,18 @@ public class MypageController {
 			}//end if
 			
 			MypageService ms = new MypageService();
+			PaginationService ps = new PaginationService();
 			
 			int currentPage = solVO.getCurrentPage();
-			int pageScale = ms.pageScale();
-			int startNum = ms.startNum(currentPage, pageScale);
-			int endNum = ms.endNum(startNum, pageScale);
-			int totalPage = ms.totalPage(ms.totalCount(solVO), pageScale);
 			
-			solVO.setStartNum(startNum);
-			solVO.setEndNum(endNum);
+			solVO.setStartNum(ps.startNum(currentPage));
+			solVO.setEndNum(ps.endNum(currentPage));
 			
 			List<OrderListDomain> list = ms.searchOrderList(solVO);
-			
-			PageNationVO pnVO = new PageNationVO("order_list.do", term, currentPage, totalPage);
-			String pageNation = ms.pageNation(pnVO);
+			PageVO pVO = ps.calcPagingOrder(currentPage, tcVO);
 			
 			model.addAttribute("order_list", list);
-			model.addAttribute("page_nation", pageNation);
+			model.addAttribute("paging", pVO);
 		}//end if
 		
 		return path;
@@ -154,7 +157,6 @@ public class MypageController {
 	 */
 	@RequestMapping(value="/user_pass_check_process.do", method=POST)
 	public String userPassCheck(HttpSession session, String user_pass, Model model) {
-		String path = "customer_service/my_page_user_info_chk";
 		
 		MypageService ms = new MypageService();
 		
@@ -164,16 +166,10 @@ public class MypageController {
 		
 		UserInfoDomain uid = ms.checkUserPass(ucVO);
 		
-		if(uid != null) {
-			path = "customer_service/my_page_user_info_change";
-			model.addAttribute("user_info", uid);
-			model.addAttribute("user_pass", user_pass);
-		} else {
-			model.addAttribute("chk_flag", true);
-		}//end else
+		model.addAttribute("user_info", uid);
+		model.addAttribute("user_pass", user_pass);
 		
-		
-		return path;
+		return "customer_service/my_page_user_info_change";
 	} // userPassCheck
 	
 	/**
@@ -238,5 +234,6 @@ public class MypageController {
 		
 		return path;
 	} // userResignForm
+	
 	
 } // class
