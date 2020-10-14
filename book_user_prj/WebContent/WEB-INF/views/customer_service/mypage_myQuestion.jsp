@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="css/common_header_footer.css">
     <link rel="stylesheet" href="css/my_page_myQuestion.css">
 	<link rel="stylesheet"	href="css/pagination.css">
+   	<link rel="stylesheet" href="css/mypage_category.css">	
+	
 
 
       <!-- JS -->

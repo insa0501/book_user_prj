@@ -96,6 +96,10 @@
 	text-decoration: none;
 }
 
+.nav_menu li a:hover {
+	font-weight: 600;
+}
+
 .nav-up {
 	top: -50px;
 	margin-top: 50px;

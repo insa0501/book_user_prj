@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common_header_footer.css">
     <link rel="stylesheet" href="css/user_change_info_form.css">
+    <link rel="stylesheet" href="css/mypage_category.css">
+    
 
 	<!-- 다음 api 우편번호 검색 -->
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

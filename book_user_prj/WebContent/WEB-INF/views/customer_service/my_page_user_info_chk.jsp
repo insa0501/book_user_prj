@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common_header_footer.css">
     <link rel="stylesheet" href="css/user_change_info_confirm.css">
+    <link rel="stylesheet" href="css/mypage_category.css">
+    
 
 
     <!-- JS -->
