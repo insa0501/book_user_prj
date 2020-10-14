@@ -32,21 +32,6 @@ public class MypageDAO {
 	}//getInstance
 	
 	/**
-	 * 주문정보 총 개수 구하기
-	 * @param sdVO
-	 * @return
-	 */
-	public int selectOrderCount(SelectOrderListVO solVO) {
-		int cnt = 0;
-		
-		SqlSession ss = GetMyBatisHandler.getInstance().getSqlSession();
-		cnt = ss.selectOne("selectOrderCnt", solVO);
-		ss.close();
-		
-		return cnt;
-	}//selectOrderCount
-	
-	/**
 	 * 주문 리스트 중 책이름 말고 나머지 조회
 	 * @return
 	 */
@@ -141,13 +126,6 @@ public class MypageDAO {
 		return uid;
 	} // selectUserPass
 	
-	public static void main(String[] args) {
-		UserCheckVO ucVO = new UserCheckVO();
-		ucVO.setUser_id("test1");
-		ucVO.setUser_pass("1");
-		System.out.println(MypageDAO.getInstance().selectUserPass(ucVO));
-	}
-	
 	/**
 	 * 개인정보 변경
 	 * @param uiVO
@@ -164,11 +142,6 @@ public class MypageDAO {
 		return cnt;
 	} // updateUserInfo
 	
-	/**
-	 * 탈퇴 비번 검증
-	 * @param urVO
-	 * @return
-	 */
 	public String selectResignId(UserResignVO urVO) {
 		String chk_id = "";
 		

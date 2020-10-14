@@ -56,15 +56,29 @@ public class PaginationDAO {
 		return cnt;
 	}
 	
-	
+	/**
+	 * 마이페이지에서 주문정보에 사용하는 토탈카운트
+	 * @param sdVO
+	 * @return
+	 */
+	public int selectTotalCntOrder(TotalCntVO tcVO) {
+		int cnt = 0;
+		
+		SqlSession ss = GetMyBatisHandler.getInstance().getSqlSession();
+		cnt = ss.selectOne("selectTotalCntOrder", tcVO);
+		ss.close();
+		
+		return cnt;
+	}//selectOrderCount
 
 	
 	public static void main(String args[]) {
 		TotalCntVO tcVO = new TotalCntVO();
-//		tcVO.setBook("kor");
-		//tcVO.setType("science");
+		tcVO.setUser_id("user1");
+		tcVO.setStartDay("2020-05-01");
+		tcVO.setEndDay("2020-10-14");
 		
-		System.out.println(PaginationDAO.getInstance().selectTotalCnt(tcVO));
+		System.out.println(PaginationDAO.getInstance().selectTotalCntOrder(tcVO));
 	}
 	
 }
