@@ -58,18 +58,27 @@
 	font-size: 3em
 }
 
-.wrap_best_seller .content_book, .wrap_monthly_new .content_book {
-	height: 350px
+.wrap_best_seller .content_book, 
+.wrap_monthly_new .content_book {
+	padding: 10px 0;
+	height: 360px
 }
 
-.wrap_best_seller .content_book .book_img, .wrap_monthly_new .content_book .book_img
+.wrap_best_seller .content_book .book_img, 
+.wrap_monthly_new .content_book .book_img
 	{
 	width: 220px;
 	height: 300px
 }
 
-.wrap_best_seller .content_book .book_img:hover, .wrap_monthly_new .content_book .book_img:hover
+/* .wrap_best_seller .content_book .book_img:hover, 
+.wrap_monthly_new .content_book .book_img:hover
 	{
+	background-color: #e9e9e9
+} */
+
+.wrap_best_seller .content_book:hover, 
+.wrap_monthly_new .content_book:hover {
 	background-color: #e9e9e9
 }
 

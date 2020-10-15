@@ -22,6 +22,7 @@ $(document).ready(function () {
         }
         //만약 다 지워서 검색어가 없다면 목록 전체를 보여줌
         if (inputText == '') {
+            console.log("다지워짐");
             setReset();
             setCategory();        
         }
@@ -51,5 +52,7 @@ function setReset() {
 function setCategory() {
     setReset();
     var inputText = $('#faq_cate_select').val();
-    $('.ques_cate').not(':contains("' + inputText + '")').parent().addClass('hidden');
+    if(inputText != '전체') {
+        $('.ques_cate').not(':contains("' + inputText + '")').parent().addClass('hidden');
+    }
 }

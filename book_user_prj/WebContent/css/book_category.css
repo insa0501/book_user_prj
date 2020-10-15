@@ -20,9 +20,10 @@
 
 
 .main_category ul li a {
-	color: black;
+	color: #4d4d4d;
 }
 
 .main_category ul li a:hover {
+	color: black;
 	font-weight: 600;
 }

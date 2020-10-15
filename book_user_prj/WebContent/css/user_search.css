@@ -138,18 +138,19 @@
 }
 
 .content_wrap_books .content_book .book_img {
-	height: 300px
+	width: 220px;
+	height: 300px;
 }
 
 .content_wrap_books .content_book:hover {
 	background-color: #e9e9e9
 }
 
-.content_book a {
+.book_title a {
 	color: black;
 }
 
-.content_book a:hover {
+.book_title a:hover {
 	color: #8f8f8f
 }
 

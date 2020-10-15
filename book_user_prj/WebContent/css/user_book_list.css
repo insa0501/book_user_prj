@@ -38,7 +38,8 @@
 }
 
 .content_wrap_books .content_book .book_img {
-	height: 300px
+	width: 220px;
+	height: 300px;
 }
 
 .content_wrap_books .content_book:hover {

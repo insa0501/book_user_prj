@@ -41,6 +41,7 @@
 <link rel="stylesheet"	href="css/common_header_footer.css">
 <link rel="stylesheet"	href="css/user_book_list.css">
 <link rel="stylesheet"	href="css/pagination.css">
+<link rel="stylesheet"	href="css/book_category.css">
 
 <!-- JS -->
 <script src="js/scroll.js"></script>
