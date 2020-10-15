@@ -19,7 +19,6 @@ import kr.co.sist.user.mypage.domain.OrderDetailDomain;
 import kr.co.sist.user.mypage.domain.OrderListDomain;
 import kr.co.sist.user.mypage.domain.UserInfoDomain;
 import kr.co.sist.user.mypage.service.MypageService;
-import kr.co.sist.user.mypage.vo.PageNationVO;
 import kr.co.sist.user.mypage.vo.SelectOrderListVO;
 import kr.co.sist.user.mypage.vo.UserCheckVO;
 import kr.co.sist.user.mypage.vo.UserInfoVO;
