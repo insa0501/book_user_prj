@@ -12,5 +12,13 @@
 }
 
 .page-link {
-	color: gray;
+	color: #d1d1d1;
+}
+
+.page-link:hover {
+	color: #464646;
+}
+
+a:not([href]):not([tabindex]) {
+    font-weight: 600;
 }

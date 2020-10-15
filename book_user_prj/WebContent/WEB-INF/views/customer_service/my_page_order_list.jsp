@@ -92,7 +92,7 @@
                 <c:forEach var="list" items="${ order_list }">
                 <tr>
                     <td><c:out value="${ list.order_date }"/> / <c:out value="${ list.order_no }"/></td>
-                    <td>
+                    <td class="order_book_title">
                     	<a href="order_detail.do?order_no=${ list.order_no }">
                     	<c:out value="${ list.list.get(0).book_name } - ${ list.list.get(0).order_book_cnt }권"/>
                     	<c:if test="${ list.list.size() ne 1 }">

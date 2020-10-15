@@ -5,10 +5,10 @@
 
 <div class="main_content">
 	<!-- 상단의 배너사진 -->
-	<div class="main_content_img">
+<!-- 	<div class="main_content_img">
 		<img
-			src="https://mmcashop.co.kr/data/editor/goods/200626/book_161016.jpg">
-	</div>
+			src="">
+	</div> -->
 	<!-- 책 wrapper -->
 	<div class="content_wrap_books">
 		<c:if test="${ empty book_list }">

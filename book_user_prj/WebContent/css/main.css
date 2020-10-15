@@ -64,6 +64,7 @@
 
 .wrap_best_seller .content_book .book_img, .wrap_monthly_new .content_book .book_img
 	{
+	width: 220px;
 	height: 300px
 }
 
@@ -76,6 +77,14 @@
 	{
 	padding: 5px 0;
 	font-weight: 600
+}
+
+.book_title a {
+	color : black;
+}
+
+.book_title a:hover {
+	font-weight: 600;
 }
 
 .wrap_recommend {
@@ -123,7 +132,7 @@
 
 .wrap_recommend .recommend_comment .comment_btn:hover {
 	background-color: #000;
-	color: #fff
+	color: white;
 }
 
 .wrap_banner {
@@ -168,4 +177,8 @@
 
 .see_more a {
 	color: black;
+}
+
+.see_more a:hover {
+	border-bottom: 1px solid black;
 }
