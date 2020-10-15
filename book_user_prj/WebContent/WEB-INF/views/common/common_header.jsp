@@ -14,7 +14,7 @@
 				</c:if>
 				<li><a href="order_list.do">마이페이지</a></li>
 				<li><a href="user_book_search_frm.do">검색</a></li>
-				<li><a href="qna_list.do">고객센터</a></li>
+				<li><a href="support.do">고객센터</a></li>
 			</ul>
 			<div class="nav_big_logo logo"><a href="book.do">BOOKS</a></div>
 		</div>
