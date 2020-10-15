@@ -100,6 +100,8 @@
                             <option value="도서">도서</option>
                             <option value="회원정보">회원정보</option>
                             <option value="결제">결제</option>
+                            <option value="서비스">서비스</option>
+                            <option value="배송">배송</option>
                           <!--   <option value="op4">옵션4</option>
                             <option value="op5">옵션5</option> -->
                         </select>
