@@ -41,7 +41,6 @@ public class OrderDAO {
 	   String orderNo = ss.selectOne("selectNextVal");
 	   
 	   orVO.setOrder_no(orderNo);
-	   System.out.println("주문번호 --------> "+ orderNo);
 	   
 	   insertResult += ss.insert("insertOrderList", orVO);
 
@@ -73,7 +72,6 @@ public class OrderDAO {
 	   String orderNo = "";
 	   
 	   SqlSession ss = GetMyBatisHandler.getInstance().getSqlSession();
-	   System.out.println(user_id+"====================== user_id");
 	   orderNo = ss.selectOne("selectOrderNo", user_id);
 	   return orderNo;
    }

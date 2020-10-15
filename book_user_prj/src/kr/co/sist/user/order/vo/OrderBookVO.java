@@ -1,5 +1,11 @@
 package kr.co.sist.user.order.vo;
 
+/**
+ * DAO에서 사용
+ * 주문할 책
+ * @author sist33
+ *
+ */
 public class OrderBookVO {
 	private String order_no, book_isbn, order_book_cnt;
 

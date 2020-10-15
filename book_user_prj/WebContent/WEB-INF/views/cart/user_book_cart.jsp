@@ -32,7 +32,7 @@
     <!-- JS -->
     <script src="js/scroll.js"></script>
     
-<script type="text/javascript">
+	<script type="text/javascript">
       window.onload = function () {
         cal_price();
       };
@@ -43,11 +43,20 @@
 		var hidden_book_isbn = document.getElementsByName("hidden_book_isbn");
         cart_list.action = "remove_session.do";
 		
+        var chk_flag = 0;
+        for (var cart_ind = 0; cart_ind < book_isbn.length; cart_ind++) {
+          if (book_isbn[cart_ind].checked) {
+            chk_flag++;
+          }
+        }
+        if (chk_flag == 0) {
+          alert("선택된 상품이 없습니다.");
+          return;
+        }
 		
 		for(var ind = 0; ind < book_isbn.length; ind++){
 			if(book_isbn[ind].checked){
 				hidden_book_isbn[ind].value = book_isbn[ind].value;
-				console.log("선택된 책 isbn ===> "+book_isbn[ind].value);
 			}
 		}
 		
@@ -127,13 +136,6 @@
         var hidden_total_book_price = document.getElementsByName("hidden_total_book_price");
         var hidden_shipping = document.getElementsByName("hidden_shipping");
         var hidden_total_price = document.getElementsByName("hidden_total_price");
-        //console.log(hidden_book_title);
-        //console.log(book_chk);
-
-        // if (book_chk.checked.length == 0) {
-        //   alert("선택된 상품이 없습니다.");
-        //   return;
-        // }
 
         var chk_flag = 0;
         for (var cart_ind = 0; cart_ind < cart_book.length; cart_ind++) {
@@ -142,7 +144,6 @@
           }
         }
         if (chk_flag == 0) {
-          console.log(chk_flag);
           alert("선택된 상품이 없습니다.");
           return;
         }
@@ -156,7 +157,6 @@
           hidden_sub_total[cart_ind].value = "";
 
           if (id == "order_selected") {
-            console.log("선택만--------------------");
             if (book_chk[cart_ind].checked) {
               chk_flag++;
               console.log(chk_flag);
@@ -174,8 +174,6 @@
           } //end if
 
           if (id == "order_all") {
-            console.log("전체");
-
             hidden_book_isbn[cart_ind].value = book_isbn[cart_ind].value;
             hidden_book_title[cart_ind].value = book_title[cart_ind].innerText;
             hidden_book_price[cart_ind].value = book_price[cart_ind].innerText;
@@ -184,8 +182,6 @@
 
             price += sub_total[cart_ind].innerText*1;
             shipping = price < 10000 ? 3000 : 0;
-            
-            
             
             hidden_total_book_price[0].value = price;
 	        hidden_shipping[0].value = shipping;

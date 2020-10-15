@@ -30,12 +30,7 @@ public class CartController {
 
       CartService cs = new CartService();
       
-      System.out.println("-------------Å×½ºÆ®-------------");
-      System.out.println(clVO.getBook_isbn());
-      System.out.println(clVO.getBook_name());
-      System.out.println(clVO.getBook_price());
-      
-      cs.addSession(session, clVO);
+      cs.addCart(session, clVO);
       String url="get_cart_list.do";
       if( "false".equals(redirectFlag)){
     	  url="book_detail.do?book_isbn="+clVO.getBook_isbn();
