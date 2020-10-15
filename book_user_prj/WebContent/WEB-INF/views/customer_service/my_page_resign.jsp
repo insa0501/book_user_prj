@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common_header_footer.css">
     <link rel="stylesheet" href="css/mypage_category.css">
-    
     <link rel="stylesheet" href="css/user_resign.css">
 
 
@@ -95,30 +94,17 @@
             <div class="main_content">
                 <div class="resign_info_wrap">
                     <span class="resign_title">01. 탈퇴 안내</span>
-                    <span class="resign_info">
-                        1. 탈퇴하면 모든 정보가 사라집니다 어쩌고저쩌고 구입내역 다 사라짐 라라라
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptates nihil eaque blanditiis
-                        rem nesciunt aperiam voluptatibus minima obcaecati? Doloribus, modi iusto. Blanditiis, magnam
-                        odit quos iste assumenda pariatur amet! <br><br>                        
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptates nihil eaque blanditiis
-                        rem nesciunt aperiam voluptatibus minima obcaecati? Doloribus, modi iusto. Blanditiis, magnam
-                        odit quos iste assumenda pariatur amet! <br><br>                        
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptates nihil eaque blanditiis
-                        rem nesciunt aperiam voluptatibus minima obcaecati? Doloribus, modi iusto. Blanditiis, magnam
-                        odit quos iste assumenda pariatur amet! <br><br>                        
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptates nihil eaque blanditiis
-                        rem nesciunt aperiam voluptatibus minima obcaecati? Doloribus, modi iusto. Blanditiis, magnam
-                        odit quos iste assumenda pariatur amet! <br><br>                        
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptates nihil eaque blanditiis
-                        rem nesciunt aperiam voluptatibus minima obcaecati? Doloribus, modi iusto. Blanditiis, magnam
-                        odit quos iste assumenda pariatur amet! <br><br>                        
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptates nihil eaque blanditiis
-                        rem nesciunt aperiam voluptatibus minima obcaecati? Doloribus, modi iusto. Blanditiis, magnam
-                        odit quos iste assumenda pariatur amet! <br><br>                        
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptates nihil eaque blanditiis
-                        rem nesciunt aperiam voluptatibus minima obcaecati? Doloribus, modi iusto. Blanditiis, magnam
-                        odit quos iste assumenda pariatur amet! <br><br>
-                    </span>
+                    <div class="resign_info">
+                        <span style="color:red">[중요] 탈퇴시 회원님의 이용정보가 삭제되며, 복구가 불가능 하오니 신중히 선택하시길 바랍니다.</span><br>
+						회원님께서 회원 탈퇴를 원하신다니 저희 쇼핑몰의 서비스가 많이 부족하고 미흡했나 봅니다.<br>
+						불편하셨던 점이나 불만사항을 알려주시면 적극 반영해서 고객님의 불편함을 해결해 드리도록 노력하겠습니다.<br>
+						<br>
+						아울러 회원 탈퇴시의 아래 사항을 숙지하시기 바랍니다. <br><br>
+						1. 회원 탈퇴 시 회원님의 정보는 상품 반품 및 A/S를 위해 전자상거래 등에서의 소비자 보호에 관한 법률에 의거한<br>
+						고객정보 보호정책에따라 관리 됩니다.<br>
+						2. 동일 아이디로 재가입은 불가합니다.<br>
+                        
+                    </div>
                 </div>
                 <div class="resign_info_wrap">
                     <span class="resign_title">02. 탈퇴 절차</span>
@@ -160,20 +146,9 @@
         </div>
     </section> <!-- main end -->
 
-    <!-- footer -->
-    <section class="footer">
-        <div class="footer_text">
-            @copyright 2조 <br>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>
-            Necessitatibus tenetur temporibus, enim nostrum soluta deleniti? <br>
-            Veritatis maiores consequuntur magni
-
-        </div>
-
-        <div class="go_to_top">
-            <a href=".section_header"><i class="fas fa-angle-up"></i></a>
-        </div>
-    </section>
+	<!-- footer -->
+	<c:import url="../common/common_footer.jsp" />
+	<!-- footer end -->
 
 
 </body>

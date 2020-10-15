@@ -146,20 +146,9 @@
         </div>
     </section> <!-- main end -->
 
-    <!-- footer -->
-    <section class="footer">
-        <div class="footer_text">
-            @copyright 2조 <br>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>
-            Necessitatibus tenetur temporibus, enim nostrum soluta deleniti? <br>
-            Veritatis maiores consequuntur magni
-
-        </div>
-
-        <div class="go_to_top">
-            <a href=".section_header"><i class="fas fa-angle-up"></i></a>
-        </div>
-    </section>
+	<!-- footer -->
+	<c:import url="../common/common_footer.jsp" />
+	<!-- footer end -->
 
 
 </body>
