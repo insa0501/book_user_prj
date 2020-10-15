@@ -42,6 +42,12 @@
 
     <!-- JS -->
     <script src="js/scroll.js"></script>
+    <script type="text/javascript">
+    	if(${ empty sessionScope.id }){
+    		alert("로그인 후에 사용가능합니다.");
+    		location.href="login_form.do";
+    	}
+    </script>
   </head>
 
   <body>

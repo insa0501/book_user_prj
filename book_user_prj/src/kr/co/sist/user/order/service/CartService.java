@@ -3,19 +3,20 @@ package kr.co.sist.user.order.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
-import kr.co.sist.user.order.domain.CartListDomain;
 import kr.co.sist.user.order.vo.CartListVO;
 
 public class CartService {
  
-   public List<CartListVO> readCart(HttpSession session){
-      
-      
+   /**
+    * 장바구니 세션을 검색
+	* @param session
+	* @return
+	*/
+	public List<CartListVO> readCart(HttpSession session){
        Object obj= session.getAttribute("cart_list");
        List<CartListVO> list = new ArrayList<CartListVO>();
       if ( obj != null) {
@@ -32,20 +33,19 @@ public class CartService {
       return list;
    }//readCart
    
-   public void addSession(HttpSession session, CartListVO clVO) {
+   /**
+    * 장바구니 세션에 추가하는 메소드
+    * @param session
+	* @param clVO
+	*/
+   public void addCart(HttpSession session, CartListVO clVO) {
       
       Object obj= session.getAttribute("cart_list");
       if( obj == null ) {
          session.setAttribute("cart_list", new HashMap<String, CartListVO>());
          obj= session.getAttribute("cart_list");
       }
-
       
-      System.out.println("isbn =========> "+clVO.getBook_isbn());
-      System.out.println("session =========> "+session.getAttribute("cart_list"));
-      
-      //구현 코드
-      //아래의 test를 지우고 주석을 풀면 됨
       HashMap<String, CartListVO> map = (HashMap<String, CartListVO>) obj;
       
       map.put(clVO.getBook_isbn(), clVO);

@@ -21,44 +21,38 @@ import kr.co.sist.user.order.vo.OrderVO;
 public class OrderController {
 	
 	
+	/**
+	 * 장바구니에서 구매로 넘어갈 때
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@GetMapping(value = "/payment.do")
-	public String order(HttpServletRequest request, Model model) {
-		//로그인이 되있을 경우에만 결제로 넘어가야함
-		//String user_id = request.getParameter("id");
+	public String payment(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("id");
-		
-		System.out.println(user_id +" <================세션에서 가져온 아이디");
-		OrderService os = new OrderService();
-		
-//		model.addAttribute("userInfo", os.orderUserInfo((String)session.getAttribute("user_id")));
 		
 		String url = "";
 		if("".equals(user_id) || user_id == null) {
 			url = "redirect:login_form.do?paymentFlag=true";
 		}else {
+			OrderService os = new OrderService();
 			model.addAttribute("user_info",os.orderUserInfo(user_id));
 			url = "payment/user_book_payment";
 		}
-		
-		
 		return url;
 	}
 	
-	@PostMapping(value = "/order_done.do")
-	public String orderDone(HttpServletRequest request, Model model) {
-		HttpSession session = request.getSession();
-		String user_id = (String)session.getAttribute("id");
-		
-		OrderService os = new OrderService();
-		model.addAttribute("order_no",os.searchOrderNo(user_id));
-		
-		return "payment/user_book_pay_done";
-	}
-	
+	/**
+	 * 정보를 입력하고 결재하기를 눌렸을 때
+	 * @param request
+	 * @param orVO
+	 * @param model
+	 * @param cartFlag
+	 * @return
+	 */
 	@PostMapping(value = "/order.do")
 	public String orderProcess(HttpServletRequest request, OrderVO orVO, Model model,String cartFlag) {
-		//String user_id = request.getParameter("id");
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("id");
 		String user_ip = request.getRemoteAddr();
@@ -80,6 +74,24 @@ public class OrderController {
 		
 		return url;
 	}
+
+	/**
+	 * 결재가 완료된 후 결과를 보여주는 메소드
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@PostMapping(value = "/order_done.do")
+	public String orderDone(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String user_id = (String)session.getAttribute("id");
+		
+		OrderService os = new OrderService();
+		model.addAttribute("order_no",os.searchOrderNo(user_id));
+		
+		return "payment/user_book_pay_done";
+	}
+	
 
 	
 }

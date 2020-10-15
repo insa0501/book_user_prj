@@ -45,7 +45,7 @@
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
     	if(${ empty sessionScope.id }){
-    		alert("로그인 후에 사용가능합니다.");
+    		alert("로그인 후 사용가능합니다.");
     		location.href="login_form.do";
     	}
     </script>
@@ -145,7 +145,6 @@
     </script>
     
   </head>
-
   <body>
     	<!-- header -->
 	<c:import url="../common/common_header.jsp" />
