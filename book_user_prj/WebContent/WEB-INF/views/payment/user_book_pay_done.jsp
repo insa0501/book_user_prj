@@ -171,7 +171,7 @@
           </div>
           <!-- address_pay_wrap end -->
           <div class="chk_wrap">
-            <input type="button" class="btn_pay_submit" value="확인" onclick="javascrpt:location.href('book.do')" />
+            <input type="button" class="btn_pay_submit" value="확인" onclick="javascrpt:location.href='book.do'" />
           </div>
         </form>
       </div>
