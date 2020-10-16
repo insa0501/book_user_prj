@@ -40,13 +40,17 @@ public class QnaController {
 	 * @return
 	 */
 	@RequestMapping(value="/qna_list.do", method=GET)
-	public String qnaListPage(HttpSession session, Model model, SelectQnaVO sqVO, TotalCntVO tcVO, @RequestParam(defaultValue = "1") int current_page) {
+	public String qnaListPage(HttpSession session, Model model, SelectQnaVO sqVO, @RequestParam(defaultValue = "1") int current_page) {
 		
 		PaginationService ps = new PaginationService(); //페이지네이션
 		
 		sqVO.setId( (String)session.getAttribute("id"));//session에서 user_id 얻기
 		sqVO.setStart_num(ps.startNum(current_page));
 		sqVO.setEnd_num(ps.endNum(current_page));
+
+		TotalCntVO tcVO=new TotalCntVO();
+		tcVO.setUser_id((String)session.getAttribute("id"));
+		System.out.println(tcVO);
 		
 		PageVO pVO = ps.calcPagingQna(current_page, tcVO);
 		QnaService qs = new QnaService();

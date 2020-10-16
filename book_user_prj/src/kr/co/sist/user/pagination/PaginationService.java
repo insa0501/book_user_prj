@@ -23,7 +23,7 @@ public class PaginationService {
 		cnt=PaginationDAO.getInstance().selectTotalCntQna(tcVO);
 		
 		return cnt;
-	}//getTotalCnt
+	}//getTotalCntQna
 	
 	public int getTotalCntSearch(TotalCntVO tcVO) {
 		int cnt=0;

@@ -25,9 +25,10 @@
 	
 	
 	<!-- 문의의 total cnt -->
-	<select id="selectTotalCntQna" resultType="int" parameterType="kr.co.sist.user.qna.vo.SelectQnaVO">
+	<select id="selectTotalCntQna" resultType="int" parameterType="kr.co.sist.user.pagination.TotalCntVO">
 		select count(*)
 		from QNA
+		where user_id = #{user_id}
 	</select>
 	
 	
@@ -80,5 +81,4 @@
 		and order_date between #{startDay} and #{endDay}
 		</if>
 	</select>
-
 </mapper>
