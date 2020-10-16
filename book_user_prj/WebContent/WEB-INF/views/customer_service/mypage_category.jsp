@@ -8,7 +8,7 @@
             <ul>
                 <li class="list_title">고객 센터</li>
                 <li><a href="support.do">자주하는 질문</a></li>
-                <li><a href="qna_list.do">나의 문의 내역</a></li>
+                <li><a href="login_form.do">나의 문의 내역</a></li>
             </ul>
 	    </c:if>
 		<c:if test="${ not empty sessionScope.id }">
