@@ -95,7 +95,7 @@
             <form action="qna_add.do" name="qnainsertFrm" id="qnainsertFrm">
                 <ul>
                     <li>
-                        <span class="form_title">본문</span>
+                        <span class="form_title">분류</span>
                         <select name="qna_type" class="input_select" id="qna_type">
                             <option value="도서">도서</option>
                             <option value="회원정보">회원정보</option>
