@@ -72,7 +72,8 @@
 	grid-template-columns: 70px 120px 45vw;
 	margin-top: 10px;
 	text-align: center;
-	padding: 10px 0
+	padding: 10px 0;
+	cursor: pointer;
 }
 
 .faq_wrap .th {
