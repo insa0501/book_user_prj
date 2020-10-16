@@ -109,6 +109,7 @@
                     <li>
                         <span class="form_title">제목</span>
                         <input type="text" id="qna_subject" name="qna_subject" class="input_title" placeholder="제목을 작성해주세요">
+                        <input type="text" style="display: none;">
                     </li>
                     <li>
                         <span class="form_title">내용</span>
