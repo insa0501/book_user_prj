@@ -9,7 +9,7 @@
 		select qna_no, qna_type, qna_subject, qna_content, qna_answer, rownum rnum
 		from QNA
 		where user_id = #{id}
-		order by qna_no
+		order by qna_no desc
 		)
 		where rnum between #{start_num} and #{end_num}
  
