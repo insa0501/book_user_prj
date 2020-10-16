@@ -63,14 +63,17 @@
                 </div>
                 
                <!-- 번호, 분류, 제목 -->
-                <c:forEach var="qs" items="${ qna_select }">
-               	<div class="ques" id="q_${qs.qna_no}">
+
+               <c:set var="i" value="0"/>
+                <c:forEach var="qs" items="${ qna_select }" varStatus="status">
+               	<div class="ques" id="q_${qs.qna_no}">  
                  <div class="ques" id="q_${qs.qna_no}">
-	                  <span><c:out value="${qs.qna_no}"/></span>
+	                  <span><c:out value="${totalCnt-(((param.current_page eq null?1:param.current_page)-1)*pageScale) - i }"/></span>
 	                  <span><c:out value="${qs.qna_type}"/></span>
 	                  <span><c:out value="${qs.qna_subject}"/></span>
                  </div>
               	</div>
+               <c:set var="i" value="${ i+1 }"/>
               	
               
                  <!-- 내용 -->

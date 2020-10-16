@@ -21,6 +21,14 @@ public class QnaService {
 				
 		return list;
 	} // searchQnaList
+	public int searchQnaListCnt(String id) {
+		int cnt = 0;
+		
+		QnaDAO qDAO = QnaDAO.getInstance();
+		cnt = qDAO.selectQnaListCnt(id);
+		
+		return cnt;
+	} // searchQnaList
 	
 	/**
 	 * 1대1 문의 추가

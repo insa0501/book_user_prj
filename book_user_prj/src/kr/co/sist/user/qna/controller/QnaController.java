@@ -49,11 +49,13 @@ public class QnaController {
 		sqVO.setEnd_num(ps.endNum(current_page));
 		
 		PageVO pVO = ps.calcPagingQna(current_page, tcVO);
-		
 		QnaService qs = new QnaService();
+		int cnt=qs.searchQnaListCnt(sqVO.getId());
 		qs.searchQnaList(sqVO);
 		
 		model.addAttribute("qna_select", qs.searchQnaList(sqVO)); //qna목록
+		model.addAttribute("totalCnt", cnt); //qna목록
+		model.addAttribute("pageScale",ps.pageScale() ); //qna목록
 		model.addAttribute("paging", pVO); //페이지네이션
 		
 		System.out.println("current Page=====================>" + pVO.getCurrent_page());

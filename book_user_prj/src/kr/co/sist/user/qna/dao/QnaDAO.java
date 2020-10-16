@@ -39,6 +39,16 @@ public class QnaDAO {
 		
 		return list;
 	} // selectQnaList
+	public int selectQnaListCnt(String id) {
+		int cnt = 0;
+		
+		SqlSession ss = GetMyBatisHandler.getInstance().getSqlSession();
+		cnt =  ss.selectOne("qna_select_cnt",id);
+		
+		ss.close();
+		
+		return cnt;
+	} // selectQnaList
 	
 	/**
 	 * 1대1 문의 추가
