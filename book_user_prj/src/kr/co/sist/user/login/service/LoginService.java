@@ -1,5 +1,8 @@
 package kr.co.sist.user.login.service;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import kr.co.sist.user.login.dao.UserLoginDAO;
@@ -8,6 +11,7 @@ import kr.co.sist.user.login.vo.SelectUserIdVO;
 import kr.co.sist.user.login.vo.SelectUserPassVO;
 import kr.co.sist.user.login.vo.UpdateUserPassVO;
 import kr.co.sist.user.login.vo.UserLoginVO;
+import kr.co.sist.util.cipher.DataEncrypt;
 
 public class LoginService {
 	
@@ -20,6 +24,18 @@ public class LoginService {
 		UserLoginDomain uld = null;
 		
 		UserLoginDAO ulDAO = UserLoginDAO.getInstance();
+		
+		try {
+			DataEncrypt de = new DataEncrypt("0123456789abcdef");
+			ulVO.setUser_pass(de.encryption(ulVO.getUser_pass()));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (GeneralSecurityException e) {
+			e.printStackTrace();
+		}//end catch
+		
 		uld = ulDAO.selectLoginId(ulVO);
 		
 		return uld;
@@ -65,6 +81,18 @@ public class LoginService {
 		boolean updateFlag = false;
 		
 		UserLoginDAO ulDAO = UserLoginDAO.getInstance();
+		
+		try {
+			DataEncrypt de = new DataEncrypt("0123456789abcdef");
+			uupVO.setUser_pass(de.encryption(uupVO.getUser_pass()));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (GeneralSecurityException e) {
+			e.printStackTrace();
+		}//end catch
+		
 		updateFlag = ulDAO.updateUserPass(uupVO)==1;
 		
 		return updateFlag;

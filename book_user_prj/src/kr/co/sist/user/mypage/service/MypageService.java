@@ -1,5 +1,8 @@
 package kr.co.sist.user.mypage.service;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +17,8 @@ import kr.co.sist.user.mypage.vo.UserCheckVO;
 import kr.co.sist.user.mypage.vo.UserInfoVO;
 import kr.co.sist.user.mypage.vo.UserResignDataVO;
 import kr.co.sist.user.mypage.vo.UserResignVO;
+import kr.co.sist.util.cipher.DataDecrypt;
+import kr.co.sist.util.cipher.DataEncrypt;
 
 public class MypageService {
 	
@@ -84,6 +89,18 @@ public class MypageService {
 		UserInfoDomain uid = null;
 		
 		MypageDAO mDAO = MypageDAO.getInstance();
+		
+		try {
+			DataEncrypt de = new DataEncrypt("0123456789abcdef");
+			ucVO.setUser_pass(de.encryption(ucVO.getUser_pass()));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (GeneralSecurityException e) {
+			e.printStackTrace();
+		}//end catch
+		
 		uid = mDAO.selectUserPass(ucVO);
 		
 		return uid;
@@ -98,6 +115,18 @@ public class MypageService {
 		boolean update_flag = false;
 		
 		MypageDAO mDAO = MypageDAO.getInstance();
+		
+		try {
+			DataEncrypt de = new DataEncrypt("0123456789abcdef");
+			uiVO.setUser_pass(de.encryption(uiVO.getUser_pass()));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (GeneralSecurityException e) {
+			e.printStackTrace();
+		}//end catch
+		
 		update_flag = mDAO.updateUserInfo(uiVO) > 0;
 		
 		return update_flag;
@@ -112,6 +141,17 @@ public class MypageService {
 		boolean flag = false;
 		
 		MypageDAO mDAO = MypageDAO.getInstance();
+		
+		try {
+			DataEncrypt de = new DataEncrypt("0123456789abcdef");
+			urVO.setUser_pass(de.encryption(urVO.getUser_pass()));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (GeneralSecurityException e) {
+			e.printStackTrace();
+		}//end catch
 		
 		String chk_id = mDAO.selectResignId(urVO);
 		
