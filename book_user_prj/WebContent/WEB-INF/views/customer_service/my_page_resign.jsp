@@ -64,7 +64,9 @@
 				return;
 			}//end if
 			
-			$("#frm").submit();
+			if (confirm("탈퇴하시겠습니까?")) {
+				$("#frm").submit();
+			}//end if
 		});//click
 		
 	});//ready
