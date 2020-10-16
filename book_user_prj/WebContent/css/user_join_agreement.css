@@ -63,8 +63,8 @@
 }
 
 .sub_title {
-  font-size: 1.5em;
-  font-weight: 300;
+    font-size: 1.7em;
+    font-weight: 400;
 }
 
 .content_wrap {
@@ -89,13 +89,20 @@
 }
 
 .agree_text textarea {
-  width: 100%;
-  height: 100px;
+    width: 100%;
+    height: 170px;
+    padding-top: 18px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border: 1px solid #cecece;
+    line-height: revert;
 }
 
 .agree_chk {
-  font-size: 1em;
-  padding-bottom: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .next_btn {
@@ -115,4 +122,8 @@
 
 .agree_box span {
   font-weight: 600;
+}
+
+textarea {
+	padding: 10px;
 }
