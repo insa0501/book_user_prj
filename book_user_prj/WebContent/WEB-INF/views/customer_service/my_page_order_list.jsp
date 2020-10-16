@@ -39,11 +39,24 @@
 		<c:if test="${ empty sessionScope.id }">
 	    location.replace("book.do");
 	    </c:if>
-	    
-	    <c:if test="${ remove_flag }">
-	    alert("주문이 삭제되었습니다.")
-	    </c:if>
 	});//ready
+	
+	function remove(order_no) {
+			$.ajax({
+				url:"order_remove.do",
+				type:"GET",
+				data:"order_no=" + order_no,
+				dataType:"text",
+				error:function( xhr ){
+					console.log(xhr.status + " / " + xhr.statusText);				
+				}, //error
+				success:function(){
+					alert("삭제되었습니다.");
+					location.href="order_list.do";
+				} //success
+			}); // ajax
+		} // end if 
+	}//remove
 </script>
 </head>
 
@@ -104,7 +117,7 @@
                     
                    	<c:if test="${ list.order_status eq 0 }">
                    	<td>주문 접수</td>
-                    <td><span><a href="order_remove.do?order_no=${ list.order_no }"><input type="button" class="cancel_btn" value="주문취소"></a></span></td>
+                    <td><span><a href="" onclick="remove(${ list.order_no })"><input type="button" class="cancel_btn" value="주문취소"></a></span></td>
                    	</c:if>
                    	
                     <c:if test="${ list.order_status eq 1 }">

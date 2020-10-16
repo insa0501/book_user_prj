@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-	
         <!-- 카테고리 -->
         <div class="main_category">
+		<c:if test="${ empty sessionScope.id }">
+            <div class="cate_title">고객센터</div>
+            <ul>
+                <li class="list_title">고객 센터</li>
+                <li><a href="support.do">자주하는 질문</a></li>
+                <li><a href="qna_list.do">나의 문의 내역</a></li>
+            </ul>
+	    </c:if>
+		<c:if test="${ not empty sessionScope.id }">
             <div class="cate_title">마이페이지</div>
             <ul>
                 <li class="list_title">주문</li>
@@ -16,4 +23,5 @@
                 <li><a href="support.do">자주하는 질문</a></li>
                 <li><a href="qna_list.do">나의 문의 내역</a></li>
             </ul>
+        </c:if>
         </div> <!-- 카테고리 end -->

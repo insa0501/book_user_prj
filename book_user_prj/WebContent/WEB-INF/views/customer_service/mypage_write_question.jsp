@@ -95,11 +95,13 @@
             <form action="qna_add.do" name="qnainsertFrm" id="qnainsertFrm">
                 <ul>
                     <li>
-                        <span class="form_title">본문</span>
+                        <span class="form_title">분류</span>
                         <select name="qna_type" class="input_select" id="qna_type">
                             <option value="도서">도서</option>
                             <option value="회원정보">회원정보</option>
                             <option value="결제">결제</option>
+                            <option value="서비스">서비스</option>
+                            <option value="배송">배송</option>
                           <!--   <option value="op4">옵션4</option>
                             <option value="op5">옵션5</option> -->
                         </select>
@@ -107,6 +109,7 @@
                     <li>
                         <span class="form_title">제목</span>
                         <input type="text" id="qna_subject" name="qna_subject" class="input_title" placeholder="제목을 작성해주세요">
+                        <input type="text" style="display: none;">
                     </li>
                     <li>
                         <span class="form_title">내용</span>

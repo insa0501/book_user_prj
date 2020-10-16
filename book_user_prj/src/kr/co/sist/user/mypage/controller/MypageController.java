@@ -129,12 +129,10 @@ public class MypageController {
 	 * @return
 	 */
 	@RequestMapping(value="/order_remove.do", method=GET)
-	public String orderRemove(HttpSession session, int order_no, Model model) {
+	public String orderRemove(int order_no) {
 		
 		MypageService ms = new MypageService();
-		boolean remove_flag = ms.removeOrder(order_no);
-		
-		model.addAttribute("remove_flag", remove_flag);
+		ms.removeOrder(order_no);
 		
 		return "forward:order_list.do";
 	} // orderRemove

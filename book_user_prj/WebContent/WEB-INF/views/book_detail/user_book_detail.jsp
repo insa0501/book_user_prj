@@ -118,7 +118,7 @@
       <div class="book_info_wrap">
         <!--책 이미지 -->
         <div class="book_img">
-          <img class="book_img" src="<c:out value="${book_detail.book_img}"/>">
+          <img src="<c:out value="${book_detail.book_img}"/>">
         </div>
         <!-- 우측의 가격,배송료,수량 -->
         <ul class="book_description">
