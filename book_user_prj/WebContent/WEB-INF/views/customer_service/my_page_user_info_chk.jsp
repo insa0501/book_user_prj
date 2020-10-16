@@ -36,6 +36,9 @@
 <script type="text/javascript">
 	
 	$(function() {
+		<c:if test="${ empty sessionScope.id }">
+		   location.replace("book.do");
+		</c:if>
 		
 		<c:if test="${ chk_flag }">
 		alert("비밀번호를 확인해주세요.");

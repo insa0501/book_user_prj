@@ -37,9 +37,8 @@
 <script type="text/javascript">
 	$(function() {
 		<c:if test="${ empty sessionScope.id }">
-		location.replace("main_index.do");
-		return;
-		</c:if>
+	    location.replace("book.do");
+	    </c:if>
 	});//ready
 	
 	function back() {

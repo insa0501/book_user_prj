@@ -142,6 +142,11 @@ public class MypageDAO {
 		return cnt;
 	} // updateUserInfo
 	
+	/**
+	 * Ε»Επ ΊρΉψ °ΛΑυ
+	 * @param urVO
+	 * @return
+	 */
 	public String selectResignId(UserResignVO urVO) {
 		String chk_id = "";
 		

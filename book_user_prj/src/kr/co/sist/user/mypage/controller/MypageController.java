@@ -154,6 +154,7 @@ public class MypageController {
 	 */
 	@RequestMapping(value="/user_pass_check_process.do", method=POST)
 	public String userPassCheck(HttpSession session, String user_pass, Model model) {
+		String path = "customer_service/my_page_user_info_chk";
 		
 		MypageService ms = new MypageService();
 		
@@ -162,11 +163,15 @@ public class MypageController {
 		ucVO.setUser_pass(user_pass);
 		
 		UserInfoDomain uid = ms.checkUserPass(ucVO);
+		if(uid != null) {
+			path = "customer_service/my_page_user_info_change";
+			model.addAttribute("user_info", uid);
+			model.addAttribute("user_pass", user_pass);
+		} else {
+			model.addAttribute("chk_flag", true);
+		}//end else
 		
-		model.addAttribute("user_info", uid);
-		model.addAttribute("user_pass", user_pass);
-		
-		return "customer_service/my_page_user_info_change";
+		return path;
 	} // userPassCheck
 	
 	/**

@@ -38,6 +38,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
+		<c:if test="${ empty sessionScope.id }">
+		   location.replace("book.do");
+		</c:if>
+		
 		$("#cancleBtn").click(function() {
 			location.replace("user_pass_check_form.do");
 		});//click
