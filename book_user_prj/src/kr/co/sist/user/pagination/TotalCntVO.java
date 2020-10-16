@@ -65,5 +65,12 @@ public class TotalCntVO {
 	public void setEndDay(String endDay) {
 		this.endDay = endDay;
 	}
+	@Override
+	public String toString() {
+		return "TotalCntVO [book=" + book + ", type=" + type + ", bookCate=" + bookCate + ", bookCateDetail="
+				+ bookCateDetail + ", searchKeyword=" + searchKeyword + ", user_id=" + user_id + ", startDay="
+				+ startDay + ", endDay=" + endDay + ", book_price1=" + book_price1 + ", book_price2=" + book_price2
+				+ "]";
+	}
 
 }
