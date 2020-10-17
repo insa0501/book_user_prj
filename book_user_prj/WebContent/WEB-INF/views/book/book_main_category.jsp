@@ -10,13 +10,13 @@
 			<c:if test="${param.book eq 'for'}">
 				<div class="cate_title">외국 도서</div>
 			</c:if>
-			<ul>
-				<li><a href="booklist.do?book=${ param.book }&type=all">전체</a></li>
-				<li><a href="booklist.do?book=${ param.book }&type=science">과학</a></li>
-				<li><a href="booklist.do?book=${ param.book }&type=kids">아동</a></li>
-				<li><a href="booklist.do?book=${ param.book }&type=novel">소설</a></li>
-				<li><a href="booklist.do?book=${ param.book }&type=travel">여행</a></li>
-				<li><a href="booklist.do?book=${ param.book }&type=cook">요리</a></li>
-				<li><a href="booklist.do?book=${ param.book }&type=psycho">심리</a></li>
+			<ul class="cateList">
+				<li><a href="booklist.do?book=${ param.book }&type=all" id="all">전체</a></li>
+				<li><a href="booklist.do?book=${ param.book }&type=science" id="science">과학</a></li>
+				<li><a href="booklist.do?book=${ param.book }&type=kids" id="kids">아동</a></li>
+				<li><a href="booklist.do?book=${ param.book }&type=novel" id="novel">소설</a></li>
+				<li><a href="booklist.do?book=${ param.book }&type=travel" id="travel">여행</a></li>
+				<li><a href="booklist.do?book=${ param.book }&type=cook" id="cook">요리</a></li>
+				<li><a href="booklist.do?book=${ param.book }&type=psycho" id="psycho">심리</a></li>
 			</ul>
 		</div>

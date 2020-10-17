@@ -45,6 +45,8 @@
 
 <!-- JS -->
 <script src="js/scroll.js"></script>
+<script src="js/category.js"></script>
+
 
 </head>
 

@@ -27,3 +27,8 @@
 	color: black;
 	font-weight: 600;
 }
+
+.selected {
+	font-weight: 600;
+	color:red;
+}
