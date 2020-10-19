@@ -5,14 +5,11 @@
 		resultType="kr.co.sist.user.qna.domain.QnaDomain"
 		parameterType="kr.co.sist.user.qna.vo.SelectQnaVO">
 		select qna_no, qna_type, qna_subject, qna_content, qna_answer
-		from(
-		select qna_no, qna_type, qna_subject, qna_content, qna_answer, rownum rnum
-		from QNA
-		where user_id = #{id}
-		order by qna_no desc
-		)
+		from (select qna_no, qna_type, qna_subject, qna_content, qna_answer,rownum rnum
+		 from ( select qna_no, qna_type, qna_subject, qna_content, qna_answer
+		        from QNA where user_id = #{id} order by qna_no desc ))
 		where rnum between #{start_num} and #{end_num}
- 
+		 
 	</select>
 	<select id="qna_select_cnt"		resultType="int"		parameterType="String">
 		select count(*) cnt
